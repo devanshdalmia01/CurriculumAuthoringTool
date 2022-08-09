@@ -2,60 +2,39 @@ body {
 	margin: 0;
 	background-color: lightgoldenrodyellow;
 	font-family: Inter, sans-serif;
-	color: #00aeef;
+	color: white;
 }
 h1,
-p,
-ul,
-fieldset {
+p {
 	margin: 0;
 	border: 0;
 	padding: 0;
 }
-ul {
-	list-style: none;
+.header {
+	text-align: center;
+	padding: 20px 0px 10px 0px;
+}
+main {
+	margin: 10px 50px;
+	height: 60vh;
+	background-color: #393f49;
+	border-radius: 10px;
+	padding: 20px;
+	box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.3);
+}
+.invisible {
+	display: none;
 }
 footer {
-	position: fixed;
-	bottom: 0px;
 	text-align: center;
 	width: 100%;
 	font-size: 12px;
 	color: black;
-	margin-bottom: 15px;
+	margin: 15px 0px;
 }
-.header {
-	text-align: center;
-	padding: 30px 0px 20px 0px;
-}
-main {
-	margin: 20px 350px;
-	height: 470px;
-	background-color: #393f49;
-	border-radius: 20px;
-	padding: 35px;
-	box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.3);
-}
-.navbar {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-.navbar h1 time {
-	font-size: 18px;
-	font-weight: 600;
-}
-.navbar h1 p {
-	font-size: 16px;
-	color: white;
-	font-weight: 500;
-}
-nav {
-	flex-grow: 1;
-	text-align: end;
-}
-.switchTaskListButton {
-	margin-left: 16px;
+.subjectChangeButton,
+.addSubjectButton {
+	margin-right: 16px;
 	background-color: white;
 	color: #393f49;
 	padding: 7px 15px;
@@ -66,68 +45,29 @@ nav {
 	transition: all 0.25s ease;
 	cursor: pointer;
 }
-.switchTaskListButton.active {
+.subjectChangeButton.active {
 	background-color: #00aeef;
 	color: #fff;
 }
-.switchTaskListButton:hover {
+.subjectChangeButton.active:hover {
+	background-color: #00aeef;
+	color: #fff;
+}
+.subjectChangeButton:hover,
+.addSubjectButton:hover {
 	background-color: lightgoldenrodyellow;
 	color: #393f49;
 }
-.invisible {
-	display: none;
+.addSubjectLabel {
+	font-weight: 500;
 }
-.inputfields fieldset {
-	padding-top: 10px;
-	display: flex;
-	margin-top: 10px;
-}
-.inputfields input {
-	margin: 0px;
-	padding: 12px 10px;
+.addSubjectInput {
+	margin: 0px 10px 20px 10px;
+	padding: 7px 15px;
 	border-radius: 5px;
 	border: none;
 	outline: none;
-	width: 40%;
-	height: 100%;
-	font-size: 12px;
+	width: 20%;
+	font-size: 14px;
 	font-weight: 400;
-}
-.inputfields button {
-	margin: 0;
-	margin-left: 20px;
-	background-color: white;
-	color: #393f49;
-	padding: 10px 20px;
-	border-radius: 5px;
-	border: none;
-	font-size: 16px;
-	font-weight: 700;
-	transition: all 0.25s ease;
-	cursor: pointer;
-}
-.inputfields button:hover {
-	background-color: lightgoldenrodyellow;
-	color: #393f49;
-}
-.activetasks,
-.completedtasks {
-	padding-top: 20px;
-	height: 75%;
-	overflow-y: scroll;
-}
-.activetasks::-webkit-scrollbar,
-.completedtasks::-webkit-scrollbar {
-	display: none;
-}
-.activetasks,
-.completedtasks {
-	scrollbar-width: none;
-}
-.activetasks ul li,
-.completedtasks ul li {
-	padding-top: 15px;
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
 }
