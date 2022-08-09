@@ -1,4 +1,5 @@
 import Base from "../Base";
+
 export default function LoadCurriculum() {
 	return (
 		<>
