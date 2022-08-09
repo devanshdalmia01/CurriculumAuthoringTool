@@ -10,13 +10,13 @@ export default function SubHeadingNode({ subHeadingData, subHeadingOrderData }) 
 			{subHeadingOrderData.map((order, index) => {
 				let data = Object.values(subHeadingData)[order];
 				return (
-					<div key={index} className="heading" style={{ backgroundColor: "yellow" }}>
+					<div key={index} className="heading">
 						<div>
-							<UpIcon color="#fff" width="25" height="25" />
-							<DownIcon color="#fff" width="25" height="25" />
-							<OutdentIcon color="#fff" width="25" height="25" />
-							<IndentIcon color="#fff" width="25" height="25" />
-							<DeleteIcon color="#fff" width="25" height="25" />
+							<UpIcon color="#fff" width="20" height="20" />
+							<DownIcon color="#fff" width="20" height="20" />
+							<OutdentIcon color="#fff" width="20" height="20" />
+							<IndentIcon color="#fff" width="20" height="20" />
+							<DeleteIcon color="#fff" width="20" height="20" />
 						</div>
 						<div></div>
 						{/* // TODO */}

@@ -1,6 +1,6 @@
 export default function TableHeading({ subHeadingData, subHeadingOrderData }) {
 	return (
-		<div className="">
+		<div className="tableHeading">
 			<div>
 				Actions
 				<span>
@@ -10,7 +10,7 @@ export default function TableHeading({ subHeadingData, subHeadingOrderData }) {
 					IndentIcon, Delete
 				</span>
 			</div>
-			<div>
+			<div style={{ marginLeft: "100px", flexGrow: "1" }}>
 				Standard
 				<span>
 					<br />

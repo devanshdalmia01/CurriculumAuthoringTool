@@ -31,15 +31,20 @@ export default function LoadCurriculum() {
 		<>
 			<Base>
 				<main>
-					<form>
-						<label className="addSubjectLabel" htmlFor="newSubjectName">
-							Enter Subject Name
-						</label>
-						<input className="addSubjectInput" type="text" id="newSubjectName" placeholder="Example - Mathematics" value={newSubjectName} onChange={handleChange} />
-						<button className="addSubjectButton" type="submit" onClick={addSubject}>
-							Add Subject
+					<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "20px" }}>
+						<form>
+							<label className="addSubjectLabel" htmlFor="newSubjectName">
+								Enter Subject Name
+							</label>
+							<input className="addSubjectInput" type="text" id="newSubjectName" placeholder="Example - Mathematics" value={newSubjectName} onChange={handleChange} />
+							<button className="addSubjectButton" type="submit" onClick={addSubject}>
+								Add Subject
+							</button>
+						</form>
+						<button className="exportButton" type="submit">
+							Export To JSON
 						</button>
-					</form>
+					</div>
 					{jsonData.map((subject, index) => {
 						return (
 							<button
@@ -53,7 +58,8 @@ export default function LoadCurriculum() {
 							</button>
 						);
 					})}
-					<div>{currentSubjectName}</div>
+					<div className="subjectName">{currentSubjectName}</div>
+					<hr className="line" />
 					<TableHeading />
 					{jsonData.map((subject, index) => subject.text === currentSubjectName && <ChapterNode key={index} chapterData={subject.children} chapterOrderData={subject.order} />)}
 				</main>

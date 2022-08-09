@@ -12,19 +12,19 @@ export default function ChapterNode({ chapterData, chapterOrderData }) {
 				let data = Object.values(chapterData)[order];
 				return (
 					<div key={index}>
-						<div className="chapter" style={{ backgroundColor: "blue" }}>
+						<div className="chapter">
 							<div>
-								<UpIcon color="#fff" width="25" height="25" />
-								<DownIcon color="#fff" width="25" height="25" />
-								<OutdentIcon color="#fff" width="25" height="25" />
-								<IndentIcon color="#fff" width="25" height="25" />
-								<DeleteIcon color="#fff" width="25" height="25" />
+								<UpIcon color="#fff" width="20" height="20" />
+								<DownIcon color="#fff" width="20" height="20" />
+								<OutdentIcon color="#fff" width="20" height="20" />
+								<IndentIcon color="#fff" width="20" height="20" />
+								<DeleteIcon color="#fff" width="20" height="20" />
 							</div>
 							<div></div>
 							{/* // TODO */}
 							<input type="text" defaultValue={data.text} />
 						</div>
-						<HeadingNode headingData={data.children} headingOrderData={data.order} />;
+						<HeadingNode headingData={data.children} headingOrderData={data.order} />
 					</div>
 				);
 			})}

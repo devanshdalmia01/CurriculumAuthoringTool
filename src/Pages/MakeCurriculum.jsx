@@ -75,7 +75,7 @@ export default function MakeCurriculum() {
 	// 				// 	setNumberOfNodes(numberOfNodes+1);
 	// 				// }}
 	// 				>
-	// 					<AddIcon color="#fff" width="25" height="25" />
+	// 					<AddIcon color="#fff" width="20" height="20" />
 	// 					Add a standard
 	// 				</button>
 	// 			</main>
