@@ -17,7 +17,7 @@ p {
 main {
 	margin: 10px 50px;
 	height: 100%;
-	background-color: #393f49;
+	background-color: #778899;
 	border-radius: 10px;
 	padding: 30px;
 	box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.3);
@@ -30,7 +30,7 @@ footer {
 	width: 100%;
 	font-size: 12px;
 	color: #242021;
-	margin: 15px 0px;
+	margin: 20px 0px 20px 0px;
 }
 .subjectChangeButton,
 .addSubjectButton,
@@ -114,6 +114,7 @@ footer {
 	font-size: 16px;
 	letter-spacing: 0.75px;
 	color: #2cbcb2;
+	margin-bottom: 10px;
 }
 .tableHeading span {
 	font-weight: 300;
@@ -121,4 +122,120 @@ footer {
 	font-size: 14px;
 	letter-spacing: 0px;
 	color: #fff;
+}
+.chapter button,
+.heading button,
+.subheading button {
+	background-color: transparent;
+	border: none;
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+}
+.chapter {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 5px 0px;
+	padding: 5px 0px;
+	border-radius: 5px;
+}
+.chapter .iconsDiv {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 15%;
+}
+.chapter .highlighterDiv {
+	margin-left: 20px;
+	background-color: #d44e28;
+	width: 3%;
+	height: 100%;
+}
+.chapter .inputField {
+	flex-grow: 1;
+	margin: 0px 0px 0px 20px;
+	padding: 7px 15px;
+	border-radius: 5px;
+	border: none;
+	outline: none;
+	font-size: 14px;
+	font-weight: 600;
+}
+.heading {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 5px 0px;
+	padding: 5px 0px;
+	border-radius: 5px;
+}
+.heading .iconsDiv {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 15%;
+}
+.heading .highlighterDiv {
+	margin-left: 20px;
+	background-color: #2cbcb2;
+	width: 6%;
+	height: 100%;
+}
+.heading .inputField {
+	flex-grow: 1;
+	margin: 0px 0px 0px 20px;
+	padding: 7px 15px;
+	border-radius: 5px;
+	border: none;
+	outline: none;
+	font-size: 14px;
+	font-weight: 400;
+}
+.subheading {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 5px 0px;
+	padding: 5px 0px;
+	border-radius: 5px;
+}
+.subheading .iconsDiv {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 15%;
+}
+.subheading .highlighterDiv {
+	margin-left: 20px;
+	background-color: #242021;
+	width: 9%;
+	height: 100%;
+}
+.subheading .inputField {
+	flex-grow: 1;
+	margin: 0px 0px 0px 20px;
+	padding: 7px 15px;
+	border-radius: 5px;
+	border: none;
+	outline: none;
+	font-size: 14px;
+	font-weight: 200;
+	color: #696969;
+}
+.addRowButton {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	background-color: #2cbcb2;
+	color: #fff;
+	padding: 7px 485px;
+	border-radius: 5px;
+	border: none;
+	font-size: 14px;
+	font-weight: 600;
+	margin-top: 20px;
+	transition: all 0.25s ease;
+	cursor: pointer;
 }

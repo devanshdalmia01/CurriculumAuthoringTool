@@ -3,6 +3,8 @@ import { toast } from "react-toastify";
 import Base from "../Base";
 import ChapterNode from "../Components/ChapterNode";
 import TableHeading from "../Components/TableHeading";
+import TopBar from "../Components/TopBar";
+import AddIcon from "../Assets/Icons/AddIcon";
 let data = require("../data.json");
 
 export default function LoadCurriculum() {
@@ -31,20 +33,7 @@ export default function LoadCurriculum() {
 		<>
 			<Base>
 				<main>
-					<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "20px" }}>
-						<form>
-							<label className="addSubjectLabel" htmlFor="newSubjectName">
-								Enter Subject Name
-							</label>
-							<input className="addSubjectInput" type="text" id="newSubjectName" placeholder="Example - Mathematics" value={newSubjectName} onChange={handleChange} />
-							<button className="addSubjectButton" type="submit" onClick={addSubject}>
-								Add Subject
-							</button>
-						</form>
-						<button className="exportButton" type="submit">
-							Export To JSON
-						</button>
-					</div>
+					<TopBar newSubjectName={newSubjectName} handleChange={handleChange} addSubject={addSubject} />
 					{jsonData.map((subject, index) => {
 						return (
 							<button
@@ -58,10 +47,12 @@ export default function LoadCurriculum() {
 							</button>
 						);
 					})}
-					<div className="subjectName">{currentSubjectName}</div>
-					<hr className="line" />
-					<TableHeading />
+					<TableHeading currentSubjectName={currentSubjectName} />
 					{jsonData.map((subject, index) => subject.text === currentSubjectName && <ChapterNode key={index} chapterData={subject.children} chapterOrderData={subject.order} />)}
+					<button className="addRowButton" onClick={() => {}}>
+						<AddIcon color="#fff" width="20" height="20" />
+						Add A Standard
+					</button>
 				</main>
 			</Base>
 		</>
