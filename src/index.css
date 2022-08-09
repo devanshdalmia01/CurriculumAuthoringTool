@@ -20,7 +20,7 @@ main {
 	background-color: #393f49;
 	border-radius: 10px;
 	padding: 20px;
-	box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.3);
 }
 .invisible {
 	display: none;
@@ -29,14 +29,14 @@ footer {
 	text-align: center;
 	width: 100%;
 	font-size: 12px;
-	color: black;
+	color: #242021;
 	margin: 15px 0px;
 }
 .subjectChangeButton,
 .addSubjectButton {
 	margin-right: 16px;
 	background-color: white;
-	color: #393f49;
+	color: #242021;
 	padding: 7px 15px;
 	border-radius: 5px;
 	border: none;
@@ -46,17 +46,17 @@ footer {
 	cursor: pointer;
 }
 .subjectChangeButton.active {
-	background-color: #00aeef;
+	background-color: #2cbcb2;
 	color: #fff;
 }
 .subjectChangeButton.active:hover {
-	background-color: #00aeef;
+	background-color: #2cbcb2;
 	color: #fff;
 }
 .subjectChangeButton:hover,
 .addSubjectButton:hover {
-	background-color: lightgoldenrodyellow;
-	color: #393f49;
+	background-color: #d44e28;
+	color: #242021;
 }
 .addSubjectLabel {
 	font-weight: 500;
@@ -70,4 +70,24 @@ footer {
 	width: 20%;
 	font-size: 14px;
 	font-weight: 400;
+}
+.selectPage {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 175px 400px;
+}
+.selectOption {
+	background-color: #2cbcb2;
+	text-decoration: none;
+	color: #242021;
+	padding: 20px;
+	font-size: 20px;
+	font-weight: 600;
+	border-radius: 5px;
+	border: none;
+	transition: all 0.25s ease;
+}
+.selectOption:hover {
+	background-color: #d44e28;
 }

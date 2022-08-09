@@ -35,7 +35,7 @@ export default function LoadCurriculum() {
 						<label className="addSubjectLabel" htmlFor="newSubjectName">
 							Enter Subject Name
 						</label>
-						<input className="addSubjectInput" type="text" id="newSubjectName" value={newSubjectName} onChange={handleChange} />
+						<input className="addSubjectInput" type="text" id="newSubjectName" placeholder="Example - Mathematics" value={newSubjectName} onChange={handleChange} />
 						<button className="addSubjectButton" type="submit" onClick={addSubject}>
 							Add Subject
 						</button>

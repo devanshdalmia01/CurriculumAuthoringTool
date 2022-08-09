@@ -6,7 +6,7 @@ export default function Base({ children }) {
 		<>
 			<Navbar />
 			{children}
-			<Footer />
+			<Footer fromSelectPage={children?.props?.children[0]?.props?.className?.includes("fromSelectPage") ? true : false} />
 		</>
 	);
 }

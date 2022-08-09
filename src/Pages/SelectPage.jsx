@@ -5,12 +5,14 @@ export default function SelectPage() {
 	return (
 		<>
 			<Base>
-				<Link className="switchTaskListButton" to="/makecurriculum">
-					Make Curriculum
-				</Link>
-				<Link className="switchTaskListButton" to="/loadcurriculum">
-					Load Curriculum
-				</Link>
+				<div className="selectPage">
+					<Link className="selectOption fromSelectPage" to="/makecurriculum">
+						Make Curriculum
+					</Link>
+					<Link className="selectOption" to="/loadcurriculum">
+						Load Curriculum
+					</Link>
+				</div>
 			</Base>
 		</>
 	);
