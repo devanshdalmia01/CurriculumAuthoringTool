@@ -1,0 +1,12 @@
+1. Import/export data from/to json
+2. Different font size/weight for every level
+3. Drag and drop feature
+5. Implement parent child
+6. Implement tooltip
+7. Implement multiple subjects and store in local storage
+8. Single buttons for each for all subjects
+9. Editable text
+10. Packages - 	1. Drag n drop
+				2. Import/export
+Data - 
+MAP - [[subjectName,[{},{},{}]],[subjectName,[{},{},{}]],[subjectName,[{},{},{}]]]

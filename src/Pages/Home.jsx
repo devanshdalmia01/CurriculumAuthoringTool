@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import Logo from "../Assets/logo.svg";
+import Logo from "../Assets/Logo.svg";
 import "./Home.css";
-import ToDoListItem from "../Components/ToDoListItem";
 
 export default function Home() {
 	const [toggleView, setToggleView] = useState(false);
@@ -18,7 +17,7 @@ export default function Home() {
 		if (toDoText === "") {
 			return alert("Please enter the task! :)");
 		} else {
-			tasks.push({ id: uuidv4(), isActive: true, text: toDoText });
+			// tasks.push({ id: uuidv4(), isActive: true, text: toDoText });
 			setToDoText("");
 		}
 	};
@@ -78,11 +77,11 @@ export default function Home() {
 							<h1>You currently have 0 active tasks. Add a task now!</h1>
 						) : (
 							<ul>
-								{tasks
+								{/* {tasks
 									.filter((task) => task.isActive === true)
 									.map((task, index) => {
 										return <ToDoListItem key={index} task={task} setDeleteId={setDeleteId} setTaskStatus={setTaskStatus} />;
-									})}
+									})} */}
 							</ul>
 						)}
 					</section>
@@ -94,11 +93,11 @@ export default function Home() {
 							<h1>You currently have 0 completed tasks. Complete a task now!</h1>
 						) : (
 							<ul>
-								{tasks
+								{/* {tasks
 									.filter((task) => task.isActive === false)
 									.map((task, index) => {
 										return <ToDoListItem key={index} task={task} setDeleteId={setDeleteId} setTaskStatus={setTaskStatus} />;
-									})}
+									})} */}
 							</ul>
 						)}
 					</section>
