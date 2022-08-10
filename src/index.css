@@ -233,8 +233,8 @@ footer {
 	justify-content: center;
 	align-items: center;
 	width: 100%;
-	background-color: #2cbcb2;
-	color: #fff;
+	background-color: white;
+	color: #242021;
 	padding: 7px 15px;
 	border-radius: 5px;
 	border: none;
@@ -245,15 +245,15 @@ footer {
 	cursor: pointer;
 }
 .addRowButton:hover {
-	background-color: #d44e28;
-	color: #242021;
+	background-color: #2cbcb2;
+	color: #fff;
 }
 .addRowButton svg .lineColor {
-	fill: #fff;
+	fill: #242021;
 	transition: all 0.25s ease;
 }
 .addRowButton:hover svg .lineColor {
-	fill: #242021;
+	fill: #fff;
 }
 .iconsDiv button svg .lineColor {
 	fill: #242021;
