@@ -9,7 +9,7 @@ export default function SelectPage() {
 					<Link className="selectOption fromSelectPage" to="/makecurriculum">
 						Make Curriculum
 					</Link>
-					<Link className="selectOption" to="/loadcurriculum">
+					<Link className="selectOption" style={{ marginLeft: "50px" }} to="/loadcurriculum">
 						Load Curriculum
 					</Link>
 				</div>

@@ -11,8 +11,8 @@ export default function SubHeadingNode({ subHeadingData, subHeadingOrderData }) 
 				let data = Object.values(subHeadingData)[order];
 				let makingUnique = Math.random();
 				return (
-					<>
-						<div key={index} className="subheading">
+					<div key={index}>
+						<div className="subheading">
 							<div className="iconsDiv">
 								<button data-tip="Move Up">
 									<UpIcon width="20" height="20" />
@@ -36,7 +36,7 @@ export default function SubHeadingNode({ subHeadingData, subHeadingOrderData }) 
 							<input className="inputField" type="text" id={`subHeadingText${makingUnique}`} defaultValue={data.text} />
 						</div>
 						<hr className="line" />
-					</>
+					</div>
 				);
 			})}
 		</>
