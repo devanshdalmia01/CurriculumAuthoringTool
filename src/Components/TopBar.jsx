@@ -1,4 +1,14 @@
-export default function TopBar({ newSubjectName, handleChange, addSubject }) {
+import makeJsonFile from "../Utilities/ExportData";
+
+export default function TopBar({ newSubjectName, handleChange, addSubject, jsonData }) {
+	const exportToJson = (e) => {
+		e.preventDefault();
+		makeJsonFile({
+			data: JSON.stringify(jsonData),
+			fileName: "data.json",
+			fileType: "text/json",
+		});
+	};
 	return (
 		<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "20px" }}>
 			<form style={{ width: "50%" }}>
@@ -10,7 +20,7 @@ export default function TopBar({ newSubjectName, handleChange, addSubject }) {
 					Add Subject
 				</button>
 			</form>
-			<button className="exportButton" type="submit">
+			<button className="exportButton" type="submit" onClick={exportToJson}>
 				Export To JSON
 			</button>
 		</div>

@@ -59,7 +59,7 @@ export default function LoadCurriculum() {
 			<Base>
 				{fileUploaded ? (
 					<main className="mainData">
-						<TopBar newSubjectName={newSubjectName} handleChange={handleChange} addSubject={addSubject} />
+						<TopBar newSubjectName={newSubjectName} handleChange={handleChange} addSubject={addSubject} jsonData={jsonData} />
 						{jsonData.map((subject, index) => {
 							let subjectName = subject.text;
 							return <AddSubjectButton key={index} subjectName={subjectName} currentSubjectName={currentSubjectName} setCurrentSubjectName={setCurrentSubjectName} />;
