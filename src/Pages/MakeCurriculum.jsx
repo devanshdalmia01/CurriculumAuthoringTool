@@ -1,85 +1,51 @@
-// import { useState } from "react";
-// import { toast } from "react-toastify";
-// import Base from "../Base";
-// import AddIcon from "../Assets/Icons/AddIcon";
-// import ChapterNode from "../Components/ChapterNode";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import Base from "../Base";
+import ChapterNode from "../Components/ChapterNode";
+import TableHeading from "../Components/TableHeading";
+import TopBar from "../Components/TopBar";
+import AddRowButton from "../Components/AddRowButton";
+import AddSubjectButton from "../Components/AddSubjectButton";
 
 export default function MakeCurriculum() {
-	// const [newSubjectName, setNewSubjectName] = useState("");
-	// const [currentSubjectName, setCurrentSubjectName] = useState("");
-	// const [numberOfNodes, setNumberOfNodes] = useState(0);
-	// const [nodeText, setNodeText] = useState("");
-	// const [data, setData] = useState(new Map());
-	// const handleChange = (event) => {
-	// 	setNewSubjectName(event.target.value);
-	// };
-	// const addSubject = (e) => {
-	// 	e.preventDefault();
-	// 	if (newSubjectName === "") {
-	// 		return toast.warning("Please enter name!");
-	// 	} else {
-	// 		data.set(newSubjectName, []);
-	// 		setCurrentSubjectName(newSubjectName);
-	// 		setNewSubjectName("");
-	// 	}
-	// };
-	// return (
-	// 	<>
-	// 		<Base>
-	// 			<main>
-	// 				{Array.from(data.keys()).map((subject, index) => {
-	// 					return (
-	// 						<button
-	// 							key={index}
-	// 							onClick={() => {
-	// 								setCurrentSubjectName(subject);
-	// 							}}
-	// 						>
-	// 							{subject}
-	// 						</button>
-	// 					);
-	// 				})}
-	// 				<form>
-	// 					<label htmlFor="newSubjectName">Enter Subject Name</label>
-	// 					<input type="text" id="newSubjectName" value={newSubjectName} onChange={handleChange} />
-	// 					<button type="submit" onClick={addSubject}>
-	// 						Add Subject
-	// 					</button>
-	// 				</form>
-	// 				<div>{currentSubjectName}</div>
-	// 				<div style={{ display: "flex" }}>
-	// 					<div>
-	// 						Actions
-	// 						<br />
-	// 						Move, Outdent,
-	// 						<br />
-	// 						IndentIcon, Delete
-	// 					</div>
-	// 					<div>
-	// 						Standard
-	// 						<br />
-	// 						The text of the standard
-	// 					</div>
-	// 				</div>
-	// 				{/* {data.get(currentSubjectName)?.map((standardData, index) => {
-	// 					return <ChapterNode key={index} standardData={standardData} nodeText={nodeText} setNodeText={setNodeText} data={data} currentSubjectName={currentSubjectName} />;
-	// 				})} */}
-	// 				<button
-	// 				// onClick={() => {
-	// 				// 	data.set(currentSubjectName, {
-	// 				// 		x: 0,
-	// 				// 		y: numberOfNodes,
-	// 				// 		text: "",
-	// 				// 		child: "",
-	// 				// 	});
-	// 				// 	setNumberOfNodes(numberOfNodes+1);
-	// 				// }}
-	// 				>
-	// 					<AddIcon color="#fff" width="20" height="20" />
-	// 					Add a standard
-	// 				</button>
-	// 			</main>
-	// 		</Base>
-	// 	</>
-	// );
+	const [jsonData, setJsonData] = useState([]);
+	const [newSubjectName, setNewSubjectName] = useState("");
+	const [currentSubjectName, setCurrentSubjectName] = useState("");
+	const handleChange = (event) => {
+		setNewSubjectName(event.target.value);
+	};
+	const addSubject = (e) => {
+		e.preventDefault();
+		if (newSubjectName === "") {
+			return toast.warning("Please enter name!");
+		} else {
+			jsonData.push({
+				level: "subject",
+				text: newSubjectName,
+				children: {},
+				order: [],
+			});
+			setCurrentSubjectName(newSubjectName);
+			setNewSubjectName("");
+		}
+	};
+	console.log(jsonData);
+	return (
+		<>
+			<Base>
+				<main className="mainData">
+					<TopBar newSubjectName={newSubjectName} handleChange={handleChange} addSubject={addSubject} jsonData={jsonData} />
+					{!(jsonData.length === 0) &&
+						jsonData.map((subject, index) => {
+							let subjectName = subject.text;
+							return <AddSubjectButton key={index} subjectName={subjectName} currentSubjectName={currentSubjectName} setCurrentSubjectName={setCurrentSubjectName} />;
+						})}
+					<TableHeading currentSubjectName={currentSubjectName} />
+					{!(jsonData.length === 0) &&
+						jsonData.map((subject, index) => subject.text === currentSubjectName && <ChapterNode key={index} chapterData={subject.children} chapterOrderData={subject.order} />)}
+					<AddRowButton />
+				</main>
+			</Base>
+		</>
+	);
 }
