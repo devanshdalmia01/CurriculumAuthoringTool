@@ -1,7 +1,7 @@
 export default function TopBar({ newSubjectName, handleChange, addSubject }) {
 	return (
 		<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "20px" }}>
-			<form>
+			<form style={{ width: "50%" }}>
 				<label className="addSubjectLabel" htmlFor="newSubjectName">
 					Enter Subject Name
 				</label>

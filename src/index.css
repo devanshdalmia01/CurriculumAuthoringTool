@@ -104,6 +104,8 @@ footer {
 	border-right: none;
 	border-bottom: none;
 	border-left: none;
+	border-color: white;
+	border-width: 0.5px;
 }
 .tableHeading {
 	display: flex;
@@ -225,12 +227,12 @@ footer {
 }
 .addRowButton {
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
 	width: 100%;
 	background-color: #2cbcb2;
 	color: #fff;
-	padding: 7px 485px;
+	padding: 7px 15px;
 	border-radius: 5px;
 	border: none;
 	font-size: 14px;
@@ -238,4 +240,22 @@ footer {
 	margin-top: 20px;
 	transition: all 0.25s ease;
 	cursor: pointer;
+}
+.addRowButton:hover {
+	background-color: #d44e28;
+	color: #242021;
+}
+.addRowButton svg .lineColor {
+	fill: #fff;
+	transition: all 0.25s ease;
+}
+.addRowButton:hover svg .lineColor {
+	fill: #242021;
+}
+.iconsDiv button svg .lineColor {
+	fill: #242021;
+	transition: all 0.75s ease;
+}
+.iconsDiv button:hover svg .lineColor {
+	fill: #2cbcb2;
 }

@@ -50,8 +50,8 @@ export default function LoadCurriculum() {
 					<TableHeading currentSubjectName={currentSubjectName} />
 					{jsonData.map((subject, index) => subject.text === currentSubjectName && <ChapterNode key={index} chapterData={subject.children} chapterOrderData={subject.order} />)}
 					<button className="addRowButton" onClick={() => {}}>
-						<AddIcon color="#fff" width="20" height="20" />
-						Add A Standard
+						<AddIcon width="20" height="20" />
+						<span style={{ marginLeft: "10px" }}>Add A Standard</span>
 					</button>
 				</main>
 			</Base>

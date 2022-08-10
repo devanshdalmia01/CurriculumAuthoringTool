@@ -11,29 +11,32 @@ export default function SubHeadingNode({ subHeadingData, subHeadingOrderData }) 
 				let data = Object.values(subHeadingData)[order];
 				let makingUnique = Math.random();
 				return (
-					<div key={index} className="subheading">
-						<div className="iconsDiv">
-							<button>
-								<UpIcon color="#fff" width="20" height="20" />
-							</button>
-							<button>
-								<DownIcon color="#fff" width="20" height="20" />
-							</button>
-							<button>
-								<OutdentIcon color="#fff" width="20" height="20" />
-							</button>
-							<button>
-								<IndentIcon color="#fff" width="20" height="20" />
-							</button>
-							<button>
-								<DeleteIcon color="#fff" width="20" height="20" />
-							</button>
+					<>
+						<div key={index} className="subheading">
+							<div className="iconsDiv">
+								<button>
+									<UpIcon width="20" height="20" />
+								</button>
+								<button>
+									<DownIcon width="20" height="20" />
+								</button>
+								<button>
+									<OutdentIcon width="20" height="20" />
+								</button>
+								<button>
+									<IndentIcon width="20" height="20" />
+								</button>
+								<button>
+									<DeleteIcon width="20" height="20" />
+								</button>
+							</div>
+							<div className="highlighterDiv">&nbsp;</div>
+							{/* // TODO */}
+							<label htmlFor={`subHeadingText${makingUnique}`}></label>
+							<input className="inputField" type="text" id={`subHeadingText${makingUnique}`} defaultValue={data.text} />
 						</div>
-						<div className="highlighterDiv">&nbsp;</div>
-						{/* // TODO */}
-						<label htmlFor={`subHeadingText${makingUnique}`}></label>
-						<input className="inputField" type="text" id={`subHeadingText${makingUnique}`} defaultValue={data.text} />
-					</div>
+						<hr className="line" />
+					</>
 				);
 			})}
 		</>

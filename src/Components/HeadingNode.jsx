@@ -16,19 +16,19 @@ export default function HeadingNode({ headingData, headingOrderData }) {
 						<div className="heading">
 							<div className="iconsDiv">
 								<button>
-									<UpIcon color="#fff" width="20" height="20" />
+									<UpIcon width="20" height="20" />
 								</button>
 								<button>
-									<DownIcon color="#fff" width="20" height="20" />
+									<DownIcon width="20" height="20" />
 								</button>
 								<button>
-									<OutdentIcon color="#fff" width="20" height="20" />
+									<OutdentIcon width="20" height="20" />
 								</button>
 								<button>
-									<IndentIcon color="#fff" width="20" height="20" />
+									<IndentIcon width="20" height="20" />
 								</button>
 								<button>
-									<DeleteIcon color="#fff" width="20" height="20" />
+									<DeleteIcon width="20" height="20" />
 								</button>
 							</div>
 							<div className="highlighterDiv">&nbsp;</div>
@@ -36,6 +36,7 @@ export default function HeadingNode({ headingData, headingOrderData }) {
 							<label htmlFor={`headingText${makingUnique}`}></label>
 							<input className="inputField" type="text" id={`headingText${makingUnique}`} defaultValue={data.text} />
 						</div>
+						<hr className="line" />
 						<SubHeadingNode subHeadingData={data.children} subHeadingOrderData={data.order} />
 					</div>
 				);

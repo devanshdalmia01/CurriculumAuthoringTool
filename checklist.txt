@@ -1,12 +1,9 @@
-1. Import/export data from/to json
-2. Different font size/weight for every level
-3. Drag and drop feature
-5. Implement parent child
-6. Implement tooltip
-7. Implement multiple subjects and store in local storage
-8. Single buttons for each for all subjects
-9. Editable text
-10. Packages - 	1. Drag n drop
-				2. Import/export
-Data - 
-MAP - [[subjectName,[{},{},{}]],[subjectName,[{},{},{}]],[subjectName,[{},{},{}]]]
+1. Export data to json
+2. Implement tooltip
+3. Editable text
+4. Packages - 	1. Import/Export
+				2. Tooltip
+5. Hover on buttons
+6. up down left right delete enter key press action
+7. Placeholder for input
+8. exception handling

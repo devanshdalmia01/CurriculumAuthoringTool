@@ -13,7 +13,7 @@ export default function TableHeading({ currentSubjectName }) {
 						Indent, Delete
 					</span>
 				</div>
-				<div style={{ marginLeft: "137px", flexGrow: "1" }}>
+				<div style={{ marginLeft: "13.5%", flexGrow: "1" }}>
 					Standard
 					<span>
 						<br />
@@ -21,6 +21,7 @@ export default function TableHeading({ currentSubjectName }) {
 					</span>
 				</div>
 			</div>
+			<hr className="line" />
 		</>
 	);
 }
