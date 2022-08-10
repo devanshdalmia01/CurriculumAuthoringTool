@@ -259,3 +259,7 @@ footer {
 .iconsDiv button:hover svg .lineColor {
 	fill: #2cbcb2;
 }
+.toolTip {
+	font-size: 12px !important;
+	padding: 5px 10px !important;
+}

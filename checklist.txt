@@ -1,9 +1,6 @@
 1. Export data to json
-2. Implement tooltip
-3. Editable text
-4. Packages - 	1. Import/Export
-				2. Tooltip
-5. Hover on buttons
-6. up down left right delete enter key press action
-7. Placeholder for input
-8. exception handling
+2. Editable text
+3. Packages - Import/Export
+4. up down left right delete enter key press action
+5. Placeholder for input
+6. exception handling

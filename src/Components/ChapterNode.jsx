@@ -15,19 +15,19 @@ export default function ChapterNode({ chapterData, chapterOrderData }) {
 					<div key={index}>
 						<div className="chapter">
 							<div className="iconsDiv">
-								<button>
+								<button data-tip="Move Up">
 									<UpIcon width="20" height="20" />
 								</button>
-								<button>
+								<button data-tip="Move Down">
 									<DownIcon width="20" height="20" />
 								</button>
-								<button>
+								<button data-tip="Outdent">
 									<OutdentIcon width="20" height="20" />
 								</button>
-								<button>
+								<button data-tip="Indent">
 									<IndentIcon width="20" height="20" />
 								</button>
-								<button>
+								<button data-tip="Delete">
 									<DeleteIcon width="20" height="20" />
 								</button>
 							</div>
