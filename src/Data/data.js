@@ -7,33 +7,32 @@ const dataSlice = createSlice({
 	initialState: [],
 	reducers: {
 		addSubject(state, action) {
-			if (action.payload === "") {
-				return toast.warning("Please enter name!");
-			} else {
-				state.push({
-					id: uuidv4(),
-					indentLevel: 0,
-					text: action.payload,
-					children: [
-						{
-							id: uuidv4(),
-							indentLevel: 1,
-							text: "",
-							children: [],
-						},
-					],
-				});
-			}
+			const tempState = state;
+			tempState.push({
+				id: uuidv4(),
+				indentLevel: 0,
+				text: action.payload,
+				children: [
+					{
+						id: uuidv4(),
+						indentLevel: 1,
+						text: "",
+						children: [],
+					},
+				],
+			});
+			return tempState;
 		},
 		addStandard(state, action) {
-			const subjectId = action.payload;
-			let subjectIndex = state.findIndex((subject) => subject.id === subjectId);
-			state[subjectIndex].children.push({
+			const tempState = state;
+			let subjectIndex = tempState.findIndex((subject) => subject.id === action.payload);
+			tempState[subjectIndex].children.push({
 				id: uuidv4(),
 				indentLevel: 1,
 				text: "",
 				children: [],
 			});
+			return tempState;
 		},
 		deleteStandard(state, action) {
 			const tempState = state;
@@ -81,7 +80,47 @@ const dataSlice = createSlice({
 			}
 		},
 		outdentStandard(state, action) {},
-		indentStandard(state, action) {},
+		indentStandard(state, action) {
+			const tempState = state;
+			if (action.payload.length === 2) {
+				let subjectIndex = tempState.findIndex((subject) => subject.id === action.payload[0]);
+				if (tempState[subjectIndex].children[0].id === action.payload[1]) {
+					toast.error("First position cannot be heading!");
+				} else {
+					let chapterIndex = tempState[subjectIndex].children.findIndex((chapter) => chapter.id === action.payload[1]);
+					tempState[subjectIndex].children[chapterIndex - 1].children.push({
+						id: tempState[subjectIndex].children[chapterIndex].id,
+						indentLevel: 2,
+						text: tempState[subjectIndex].children[chapterIndex].text,
+						children: [],
+					});
+					for (let i = 0; i < tempState[subjectIndex].children[chapterIndex].children.length; i++) {
+						tempState[subjectIndex].children[chapterIndex - 1].children.push(tempState[subjectIndex].children[chapterIndex].children[i]);
+					}
+					tempState[subjectIndex].children.splice(chapterIndex, 1);
+					return tempState;
+				}
+			} else if (action.payload.length === 3) {
+				let subjectIndex = tempState.findIndex((subject) => subject.id === action.payload[0]);
+				let chapterIndex = tempState[subjectIndex].children.findIndex((chapter) => chapter.id === action.payload[1]);
+				if (tempState[subjectIndex].children[chapterIndex].children[0].id === action.payload[2]) {
+					toast.error("This is the first heading you cannot indent this.");
+				} else {
+					let headingIndex = tempState[subjectIndex].children[chapterIndex].children.findIndex((heading) => heading.id === action.payload[2]);
+					tempState[subjectIndex].children[chapterIndex].children[headingIndex - 1].children.push({
+						id: tempState[subjectIndex].children[chapterIndex].children[headingIndex].id,
+						indentLevel: 3,
+						text: tempState[subjectIndex].children[chapterIndex].children[headingIndex].text,
+						children: [],
+					});
+					for (let i = 0; i < tempState[subjectIndex].children[chapterIndex].children[headingIndex].children.length; i++) {
+						tempState[subjectIndex].children[chapterIndex].children[headingIndex - 1].push(tempState[subjectIndex].children[chapterIndex].children[headingIndex].children[i]);
+					}
+					tempState[subjectIndex].children[chapterIndex].children.splice(headingIndex, 1);
+					return tempState;
+				}
+			}
+		},
 		moveUpStandard(state, action) {},
 		moveDownStandard(state, action) {},
 	},

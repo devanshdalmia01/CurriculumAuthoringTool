@@ -7,7 +7,7 @@ import SubHeadingNode from "./SubHeadingNode";
 import { useDispatch } from "react-redux";
 import { actions } from "../Data/data";
 
-export default function HeadingNode({ subjectId, chapterId, headingData, outdentInput, indentInput }) {
+export default function HeadingNode({ subjectId, chapterId, headingData }) {
 	const dispatch = useDispatch();
 	const handleUpdate = (e, headingId) => {
 		e.preventDefault();
@@ -16,6 +16,10 @@ export default function HeadingNode({ subjectId, chapterId, headingData, outdent
 	const handleDelete = (e, headingId) => {
 		e.preventDefault();
 		dispatch(actions.deleteStandard([subjectId, chapterId, headingId]));
+	};
+	const handleIndent = (e, headingId) => {
+		e.preventDefault();
+		dispatch(actions.indentStandard([subjectId, chapterId, headingId]));
 	};
 	return (
 		<>
@@ -30,10 +34,10 @@ export default function HeadingNode({ subjectId, chapterId, headingData, outdent
 								<button data-tip="Move Down">
 									<DownIcon width="20" height="20" />
 								</button>
-								<button data-tip="Outdent" onClick={outdentInput}>
+								<button data-tip="Outdent">
 									<OutdentIcon width="20" height="20" />
 								</button>
-								<button data-tip="Indent" onClick={indentInput}>
+								<button data-tip="Indent" onClick={(e) => handleIndent(e, data.id)}>
 									<IndentIcon width="20" height="20" />
 								</button>
 								<button data-tip="Delete" onClick={(e) => handleDelete(e, data.id)}>
@@ -45,7 +49,7 @@ export default function HeadingNode({ subjectId, chapterId, headingData, outdent
 							<input className="inputField" type="text" id={data.id} value={data.text} onChange={(e) => handleUpdate(e, data.id)} />
 						</div>
 						<hr className="line" />
-						<SubHeadingNode subHeadingData={data.children} subjectId={subjectId} chapterId={chapterId} headingId={data.id} outdentInput={outdentInput} indentInput={indentInput} />
+						<SubHeadingNode subHeadingData={data.children} subjectId={subjectId} chapterId={chapterId} headingId={data.id} />
 					</div>
 				);
 			})}

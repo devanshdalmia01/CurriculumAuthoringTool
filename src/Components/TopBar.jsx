@@ -2,6 +2,7 @@ import { useState } from "react";
 import makeJsonFile from "../Utilities/ExportData";
 import { useDispatch, useSelector } from "react-redux";
 import { actions } from "../Data/data";
+import { toast } from "react-toastify";
 
 export default function TopBar({ setCurrentSubjectName }) {
 	const [newSubjectName, setNewSubjectName] = useState("");
@@ -12,6 +13,9 @@ export default function TopBar({ setCurrentSubjectName }) {
 	};
 	const handleAddSubject = (e) => {
 		e.preventDefault();
+		if (newSubjectName === "") {
+			return toast.warning("Please enter something!");
+		}
 		dispatch(actions.addSubject(newSubjectName));
 		setCurrentSubjectName(newSubjectName);
 		setNewSubjectName("");

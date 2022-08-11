@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { toast } from "react-toastify";
 import Base from "../Base";
 import ChapterNode from "../Components/ChapterNode";
 import TableHeading from "../Components/TableHeading";
@@ -9,29 +8,8 @@ import AddSubjectButton from "../Components/AddSubjectButton";
 import { useSelector } from "react-redux";
 
 export default function MakeCurriculum() {
-	const [newRowIndentLevel, setNewRowIndentLevel] = useState(1);
 	const [currentSubjectName, setCurrentSubjectName] = useState("");
 	const jsonData = useSelector((state) => state);
-
-	const outdentInput = () => {
-		if (newRowIndentLevel === 3) {
-			setNewRowIndentLevel(2);
-		} else if (newRowIndentLevel === 2) {
-			setNewRowIndentLevel(1);
-		} else if (newRowIndentLevel === 1) {
-			return toast.error("You cannot outdent a Chapter.");
-		}
-	};
-
-	const indentInput = () => {
-		if (newRowIndentLevel === 1) {
-			setNewRowIndentLevel(2);
-		} else if (newRowIndentLevel === 2) {
-			setNewRowIndentLevel(3);
-		} else if (newRowIndentLevel === 3) {
-			return toast.error("You cannot indent a Subheading.");
-		}
-	};
 	console.log(jsonData, "idgaf555");
 	return (
 		<>
@@ -49,7 +27,7 @@ export default function MakeCurriculum() {
 								subject.text === currentSubjectName && (
 									<div key={index}>
 										<TableHeading currentSubjectName={currentSubjectName} />
-										<ChapterNode chapterData={subject.children} subjectId={subject.id} outdentInput={outdentInput} indentInput={indentInput} />
+										<ChapterNode chapterData={subject.children} subjectId={subject.id} />
 										<AddRowButton subjectId={subject.id} />
 									</div>
 								)

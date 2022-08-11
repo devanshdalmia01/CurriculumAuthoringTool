@@ -5,8 +5,9 @@ import IndentIcon from "../Assets/Icons/IndentIcon";
 import DeleteIcon from "../Assets/Icons/DeleteIcon";
 import { useDispatch } from "react-redux";
 import { actions } from "../Data/data";
+import { toast } from "react-toastify";
 
-export default function SubHeadingNode({ subjectId, chapterId, headingId, subHeadingData, outdentInput, indentInput }) {
+export default function SubHeadingNode({ subjectId, chapterId, headingId, subHeadingData }) {
 	const dispatch = useDispatch();
 	const handleUpdate = (e, subHeadingId) => {
 		e.preventDefault();
@@ -15,6 +16,10 @@ export default function SubHeadingNode({ subjectId, chapterId, headingId, subHea
 	const handleDelete = (e, subHeadingId) => {
 		e.preventDefault();
 		dispatch(actions.deleteStandard([subjectId, chapterId, headingId, subHeadingId]));
+	};
+	const handleIndent = (e, subHeadingId) => {
+		e.preventDefault();
+		return toast.error("You cannot indent a subheading!");
 	};
 	return (
 		<>
@@ -29,10 +34,10 @@ export default function SubHeadingNode({ subjectId, chapterId, headingId, subHea
 								<button data-tip="Move Down">
 									<DownIcon width="20" height="20" />
 								</button>
-								<button data-tip="Outdent" onClick={outdentInput}>
+								<button data-tip="Outdent">
 									<OutdentIcon width="20" height="20" />
 								</button>
-								<button data-tip="Indent" onClick={indentInput}>
+								<button data-tip="Indent" onClick={(e) => handleIndent(e, data.id)}>
 									<IndentIcon width="20" height="20" />
 								</button>
 								<button data-tip="Delete" onClick={(e) => handleDelete(e, data.id)}>

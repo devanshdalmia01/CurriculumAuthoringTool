@@ -7,7 +7,7 @@ import HeadingNode from "./HeadingNode";
 import { useDispatch } from "react-redux";
 import { actions } from "../Data/data";
 
-export default function ChapterNode({ subjectId, chapterData, outdentInput, indentInput }) {
+export default function ChapterNode({ subjectId, chapterData }) {
 	const dispatch = useDispatch();
 	const handleUpdate = (e, chapterId) => {
 		e.preventDefault();
@@ -16,6 +16,10 @@ export default function ChapterNode({ subjectId, chapterData, outdentInput, inde
 	const handleDelete = (e, chapterId) => {
 		e.preventDefault();
 		dispatch(actions.deleteStandard([subjectId, chapterId]));
+	};
+	const handleIndent = (e, chapterId) => {
+		e.preventDefault();
+		dispatch(actions.indentStandard([subjectId, chapterId]));
 	};
 	return (
 		<>
@@ -30,10 +34,10 @@ export default function ChapterNode({ subjectId, chapterData, outdentInput, inde
 								<button data-tip="Move Down">
 									<DownIcon width="20" height="20" />
 								</button>
-								<button data-tip="Outdent" onClick={outdentInput}>
+								<button data-tip="Outdent">
 									<OutdentIcon width="20" height="20" />
 								</button>
-								<button data-tip="Indent" onClick={indentInput}>
+								<button data-tip="Indent" onClick={(e) => handleIndent(e, data.id)}>
 									<IndentIcon width="20" height="20" />
 								</button>
 								<button data-tip="Delete" onClick={(e) => handleDelete(e, data.id)}>
@@ -45,7 +49,7 @@ export default function ChapterNode({ subjectId, chapterData, outdentInput, inde
 							<input className="inputField" type="text" id={data.id} value={data.text} onChange={(e) => handleUpdate(e, data.id)} />
 						</div>
 						<hr className="line" />
-						<HeadingNode headingData={data.children} subjectId={subjectId} chapterId={data.id} outdentInput={outdentInput} indentInput={indentInput} />
+						<HeadingNode headingData={data.children} subjectId={subjectId} chapterId={data.id} />
 					</div>
 				);
 			})}
