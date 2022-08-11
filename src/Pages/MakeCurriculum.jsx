@@ -43,19 +43,19 @@ export default function MakeCurriculum() {
 							let subjectName = subject.text;
 							return <AddSubjectButton key={index} subjectName={subjectName} currentSubjectName={currentSubjectName} setCurrentSubjectName={setCurrentSubjectName} />;
 						})}
-					<TableHeading currentSubjectName={currentSubjectName} />
 					{!(jsonData.length === 0) ? (
 						jsonData.map(
 							(subject, index) =>
 								subject.text === currentSubjectName && (
 									<div key={index}>
+										<TableHeading currentSubjectName={currentSubjectName} />
 										<ChapterNode chapterData={subject.children} subjectId={subject.id} outdentInput={outdentInput} indentInput={indentInput} />
 										<AddRowButton subjectId={subject.id} />
 									</div>
 								)
 						)
 					) : (
-						<h1>First add a subject</h1>
+						<h1 style={{ marginTop: "30px", textAlign: "center" }}>First Add A Subject</h1>
 					)}
 				</main>
 			</Base>
