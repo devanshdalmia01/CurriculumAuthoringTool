@@ -1,6 +1,21 @@
+import { useState } from "react";
 import makeJsonFile from "../Utilities/ExportData";
+import { useDispatch, useSelector } from "react-redux";
+import { actions } from "../Data/data";
 
-export default function TopBar({ newSubjectName, handleChange, addSubject, jsonData }) {
+export default function TopBar({ setCurrentSubjectName }) {
+	const [newSubjectName, setNewSubjectName] = useState("");
+	const dispatch = useDispatch();
+	const jsonData = useSelector((state) => state);
+	const handleChange = (e) => {
+		setNewSubjectName(e.target.value);
+	};
+	const handleAddSubject = (e) => {
+		e.preventDefault();
+		dispatch(actions.addSubject(newSubjectName));
+		setCurrentSubjectName(newSubjectName);
+		setNewSubjectName("");
+	};
 	const exportToJson = (e) => {
 		e.preventDefault();
 		makeJsonFile({
@@ -16,7 +31,7 @@ export default function TopBar({ newSubjectName, handleChange, addSubject, jsonD
 					Enter Subject Name
 				</label>
 				<input className="addSubjectInput" type="text" id="newSubjectName" placeholder="Example - Mathematics" value={newSubjectName} onChange={handleChange} />
-				<button className="addSubjectButton" type="submit" onClick={addSubject}>
+				<button className="addSubjectButton" type="submit" onClick={handleAddSubject}>
 					Add Subject
 				</button>
 			</form>

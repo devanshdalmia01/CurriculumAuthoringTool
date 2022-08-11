@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import Base from "../Base";
 import ChapterNode from "../Components/ChapterNode";
@@ -6,37 +6,57 @@ import TableHeading from "../Components/TableHeading";
 import TopBar from "../Components/TopBar";
 import AddRowButton from "../Components/AddRowButton";
 import AddSubjectButton from "../Components/AddSubjectButton";
-import { useDispatch, useSelector } from "react-redux";
-import { actions } from "../Data/data";
+import { useSelector } from "react-redux";
 
 export default function MakeCurriculum() {
-	const dispatch = useDispatch();
-	const jsonData = useSelector((state) => state);
-	const [newSubjectName, setNewSubjectName] = useState("");
+	const [newRowIndentLevel, setNewRowIndentLevel] = useState(1);
 	const [currentSubjectName, setCurrentSubjectName] = useState("");
-	const handleChange = (event) => {
-		setNewSubjectName(event.target.value);
+	const jsonData = useSelector((state) => state);
+
+	const outdentInput = () => {
+		if (newRowIndentLevel === 3) {
+			setNewRowIndentLevel(2);
+		} else if (newRowIndentLevel === 2) {
+			setNewRowIndentLevel(1);
+		} else if (newRowIndentLevel === 1) {
+			return toast.error("You cannot outdent a Chapter.");
+		}
 	};
-	const addSubject = (e) => {
-		e.preventDefault();
-		dispatch(actions.addSubject(newSubjectName));
-		setCurrentSubjectName(newSubjectName);
-		setNewSubjectName("");
+
+	const indentInput = () => {
+		if (newRowIndentLevel === 1) {
+			setNewRowIndentLevel(2);
+		} else if (newRowIndentLevel === 2) {
+			setNewRowIndentLevel(3);
+		} else if (newRowIndentLevel === 3) {
+			return toast.error("You cannot indent a Subheading.");
+		}
 	};
 	console.log(jsonData, "idgaf555");
 	return (
 		<>
 			<Base>
 				<main className="mainData">
-					<TopBar newSubjectName={newSubjectName} handleChange={handleChange} addSubject={addSubject} />
-					{!(jsonData === undefined) &&
+					<TopBar setCurrentSubjectName={setCurrentSubjectName} />
+					{!(jsonData.length === 0) &&
 						jsonData.map((subject, index) => {
 							let subjectName = subject.text;
 							return <AddSubjectButton key={index} subjectName={subjectName} currentSubjectName={currentSubjectName} setCurrentSubjectName={setCurrentSubjectName} />;
 						})}
 					<TableHeading currentSubjectName={currentSubjectName} />
-					{!(jsonData === undefined) && jsonData.map((subject, index) => subject.text === currentSubjectName && <ChapterNode key={index} chapterData={subject.children} />)}
-					<AddRowButton />
+					{!(jsonData.length === 0) ? (
+						jsonData.map(
+							(subject, index) =>
+								subject.text === currentSubjectName && (
+									<div key={index}>
+										<ChapterNode chapterData={subject.children} subjectId={subject.id} outdentInput={outdentInput} indentInput={indentInput} />
+										<AddRowButton subjectId={subject.id} />
+									</div>
+								)
+						)
+					) : (
+						<h1>First add a subject</h1>
+					)}
 				</main>
 			</Base>
 		</>

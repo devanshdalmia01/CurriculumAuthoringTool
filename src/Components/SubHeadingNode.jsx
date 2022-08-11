@@ -3,14 +3,24 @@ import DownIcon from "../Assets/Icons/DownIcon";
 import OutdentIcon from "../Assets/Icons/OutdentIcon";
 import IndentIcon from "../Assets/Icons/IndentIcon";
 import DeleteIcon from "../Assets/Icons/DeleteIcon";
+import { useDispatch } from "react-redux";
+import { actions } from "../Data/data";
 
-export default function SubHeadingNode({ subHeadingData }) {
+export default function SubHeadingNode({ subjectId, chapterId, headingId, subHeadingData, outdentInput, indentInput }) {
+	const dispatch = useDispatch();
+	const handleUpdate = (e, subHeadingId) => {
+		e.preventDefault();
+		dispatch(actions.updateStandard([e.target.value, subjectId, chapterId, headingId, subHeadingId]));
+	};
+	const handleDelete = (e, subHeadingId) => {
+		e.preventDefault();
+		dispatch(actions.deleteStandard([subjectId, chapterId, headingId, subHeadingId]));
+	};
 	return (
 		<>
-			{subHeadingData.map((data, index) => {
-				let makingUnique = Math.random();
+			{subHeadingData.map((data) => {
 				return (
-					<div key={index}>
+					<div key={data.id}>
 						<div className="subheading">
 							<div className="iconsDiv">
 								<button data-tip="Move Up">
@@ -19,20 +29,19 @@ export default function SubHeadingNode({ subHeadingData }) {
 								<button data-tip="Move Down">
 									<DownIcon width="20" height="20" />
 								</button>
-								<button data-tip="Outdent">
+								<button data-tip="Outdent" onClick={outdentInput}>
 									<OutdentIcon width="20" height="20" />
 								</button>
-								<button data-tip="Indent">
+								<button data-tip="Indent" onClick={indentInput}>
 									<IndentIcon width="20" height="20" />
 								</button>
-								<button data-tip="Delete">
+								<button data-tip="Delete" onClick={(e) => handleDelete(e, data.id)}>
 									<DeleteIcon width="20" height="20" />
 								</button>
 							</div>
 							<div className="highlighterDiv">&nbsp;</div>
-							{/* // TODO */}
-							<label htmlFor={`subHeadingText${makingUnique}`}></label>
-							<input className="inputField" type="text" id={`subHeadingText${makingUnique}`} defaultValue={data.text} />
+							<label htmlFor={data.id}></label>
+							<input className="inputField" type="text" id={data.id} value={data.text} onChange={(e) => handleUpdate(e, data.id)} />
 						</div>
 						<hr className="line" />
 					</div>

@@ -4,14 +4,24 @@ import OutdentIcon from "../Assets/Icons/OutdentIcon";
 import IndentIcon from "../Assets/Icons/IndentIcon";
 import DeleteIcon from "../Assets/Icons/DeleteIcon";
 import HeadingNode from "./HeadingNode";
+import { useDispatch } from "react-redux";
+import { actions } from "../Data/data";
 
-export default function ChapterNode({ chapterData }) {
+export default function ChapterNode({ subjectId, chapterData, outdentInput, indentInput }) {
+	const dispatch = useDispatch();
+	const handleUpdate = (e, chapterId) => {
+		e.preventDefault();
+		dispatch(actions.updateStandard([e.target.value, subjectId, chapterId]));
+	};
+	const handleDelete = (e, chapterId) => {
+		e.preventDefault();
+		dispatch(actions.deleteStandard([subjectId, chapterId]));
+	};
 	return (
 		<>
-			{chapterData.map((data, index) => {
-				let makingUnique = Math.random();
+			{chapterData.map((data) => {
 				return (
-					<div key={index}>
+					<div key={data.id}>
 						<div className="chapter">
 							<div className="iconsDiv">
 								<button data-tip="Move Up">
@@ -20,23 +30,22 @@ export default function ChapterNode({ chapterData }) {
 								<button data-tip="Move Down">
 									<DownIcon width="20" height="20" />
 								</button>
-								<button data-tip="Outdent">
+								<button data-tip="Outdent" onClick={outdentInput}>
 									<OutdentIcon width="20" height="20" />
 								</button>
-								<button data-tip="Indent">
+								<button data-tip="Indent" onClick={indentInput}>
 									<IndentIcon width="20" height="20" />
 								</button>
-								<button data-tip="Delete">
+								<button data-tip="Delete" onClick={(e) => handleDelete(e, data.id)}>
 									<DeleteIcon width="20" height="20" />
 								</button>
 							</div>
 							<div className="highlighterDiv">&nbsp;</div>
-							{/* // TODO */}
-							<label htmlFor={`chapterText${makingUnique}`}></label>
-							<input className="inputField" type="text" id={`chapterText${makingUnique}`} defaultValue={data.text} />
+							<label htmlFor={data.id}></label>
+							<input className="inputField" type="text" id={data.id} value={data.text} onChange={(e) => handleUpdate(e, data.id)} />
 						</div>
 						<hr className="line" />
-						<HeadingNode headingData={data.children} />
+						<HeadingNode headingData={data.children} subjectId={subjectId} chapterId={data.id} outdentInput={outdentInput} indentInput={indentInput} />
 					</div>
 				);
 			})}
