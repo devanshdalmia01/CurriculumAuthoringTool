@@ -7,6 +7,7 @@ import HeadingNode from "./HeadingNode";
 import { useDispatch } from "react-redux";
 import { actions } from "../Data/data";
 import { toast } from "react-toastify";
+import ReactTooltip from "react-tooltip";
 
 export default function ChapterNode({ subjectId, chapterData }) {
 	const dispatch = useDispatch();
@@ -33,6 +34,7 @@ export default function ChapterNode({ subjectId, chapterData }) {
 					<div key={data.id}>
 						<div className="chapter">
 							<div className="iconsDiv">
+								<ReactTooltip type="light" effect="solid" className="toolTip" />
 								<button data-tip="Move Up">
 									<UpIcon width="20" height="20" />
 								</button>

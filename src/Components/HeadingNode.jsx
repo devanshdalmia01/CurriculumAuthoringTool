@@ -6,6 +6,7 @@ import DeleteIcon from "../Assets/Icons/DeleteIcon";
 import SubHeadingNode from "./SubHeadingNode";
 import { useDispatch } from "react-redux";
 import { actions } from "../Data/data";
+import ReactTooltip from "react-tooltip";
 
 export default function HeadingNode({ subjectId, chapterId, headingData }) {
 	const dispatch = useDispatch();
@@ -32,6 +33,7 @@ export default function HeadingNode({ subjectId, chapterId, headingData }) {
 					<div key={data.id}>
 						<div className="heading">
 							<div className="iconsDiv">
+								<ReactTooltip type="light" effect="solid" className="toolTip" />
 								<button data-tip="Move Up">
 									<UpIcon width="20" height="20" />
 								</button>

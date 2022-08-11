@@ -1,2 +1,2 @@
 1. exception handling
-2. tooltips not working
+2. press enter for adding standard
