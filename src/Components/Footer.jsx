@@ -1,7 +1,7 @@
-export default function Footer({ fromSelectPage, fromLoadCurriculum }) {
+export default function Footer() {
 	return (
 		<>
-			<footer style={fromSelectPage ? { position: "fixed", bottom: "0px" } : fromLoadCurriculum ? { position: "fixed", bottom: "0px" } : { position: "unset" }}>
+			<footer>
 				<h1>&copy; 2022 Devansh Dalmia | All Rights Reserved</h1>
 			</footer>
 		</>

@@ -61,7 +61,7 @@ export default function LoadCurriculum() {
 						)}
 					</main>
 				) : (
-					<main className="uploadFile fromLoadCurriculum">
+					<main className="uploadFile">
 						<input
 							type="file"
 							id="fileInput"

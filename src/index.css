@@ -25,12 +25,12 @@ p {
 .invisible {
 	display: none;
 }
-footer {
+footer h1 {
 	text-align: center;
 	width: 100%;
-	font-size: 12px;
+	font-size: 14px;
 	color: #242021;
-	margin: 20px 0px 20px 0px;
+	margin: 30px 0px 20px 0px;
 }
 .subjectChangeButton,
 .addSubjectButton,
