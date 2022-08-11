@@ -1,179 +1,300 @@
 [
 	{
-		"level": "subject",
+		"indentLevel": 0,
 		"text": "Mathematics",
-		"children": {
-			"0": {
-				"level": "chapter",
+		"children": [
+			{
+				"indentLevel": 1,
 				"text": "zeroth chapter",
-				"children": {},
-				"order": []
+				"children": []
 			},
-			"1": {
-				"level": "chapter",
+			{
+				"indentLevel": 1,
 				"text": "first chapter",
-				"children": {
-					"0": {
-						"level": "heading",
+				"children": [
+					{
+						"indentLevel": 2,
 						"text": "first chapter - 0th heading",
-						"children": {},
-						"order": []
+						"children": []
 					},
-					"1": {
-						"level": "heading",
+					{
+						"indentLevel": 2,
 						"text": "first chapter - 1st heading",
-						"children": {},
-						"order": []
+						"children": []
 					},
-					"2": {
-						"level": "heading",
+					{
+						"indentLevel": 2,
 						"text": "first chapter - 2nd heading",
-						"children": {
-							"0": {
-								"level": "subheading",
+						"children": [
+							{
+								"indentLevel": 3,
 								"text": "first chapter - 2nd heading - 0th subheading",
-								"children": null,
-								"order": null
+								"children": []
 							}
-						},
-						"order": [0]
+						]
 					},
-					"3": {
-						"level": "heading",
+					{
+						"indentLevel": 2,
 						"text": "first chapter - 3rd heading",
-						"children": {
-							"0": {
-								"level": "subheading",
+						"children": [
+							{
+								"indentLevel": 3,
 								"text": "first chapter - 3rd heading - 0th subheading",
-								"children": null,
-								"order": null
+								"children": []
 							},
-							"1": {
-								"level": "subheading",
+							{
+								"indentLevel": 3,
 								"text": "first chapter - 3rd heading - 1st subheading",
-								"children": null,
-								"order": null
+								"children": []
 							},
-							"2": {
-								"level": "subheading",
+							{
+								"indentLevel": 3,
 								"text": "first chapter - 3rd heading - 2nd subheading",
-								"children": null,
-								"order": null
+								"children": []
 							},
-							"3": {
-								"level": "subheading",
+							{
+								"indentLevel": 3,
 								"text": "first chapter - 3rd heading - 3rd subheading",
-								"children": null,
-								"order": null
+								"children": []
 							}
-						},
-						"order": [1, 2, 3, 0]
+						]
 					}
-				},
-				"order": [2, 3, 1, 0]
+				]
 			},
-			"2": {
-				"level": "chapter",
+			{
+				"indentLevel": 1,
 				"text": "second chapter",
-				"children": {},
-				"order": []
+				"children": []
 			},
-			"3": {
-				"level": "chapter",
+			{
+				"indentLevel": 1,
 				"text": "third chapter",
-				"children": {
-					"0": {
-						"level": "heading",
+				"children": [
+					{
+						"indentLevel": 2,
 						"text": "third chapter - 0th heading",
-						"children": {
-							"0": {
-								"level": "subheading",
+						"children": [
+							{
+								"indentLevel": 3,
 								"text": "2thirdmaths",
-								"children": null,
-								"order": null
+								"children": []
 							},
-							"1": {
-								"level": "subheading",
+							{
+								"indentLevel": 3,
 								"text": "2fourthmaths",
-								"children": null,
-								"order": null
+								"children": []
 							}
-						},
-						"order": [1, 0]
+						]
 					},
-					"1": {
-						"level": "heading",
+					{
+						"indentLevel": 2,
 						"text": "third chapter - 1st heading",
-						"children": {
-							"0": {
-								"level": "subheading",
+						"children": [
+							{
+								"indentLevel": 3,
 								"text": "2sixthmaths",
-								"children": null,
-								"order": null
+								"children": []
 							},
-							"1": {
-								"level": "subheading",
+							{
+								"indentLevel": 3,
 								"text": "2seventhmaths",
-								"children": null,
-								"order": null
+								"children": []
 							}
-						},
-						"order": [1, 0]
+						]
 					},
-					"2": {
-						"level": "heading",
+					{
+						"indentLevel": 2,
 						"text": "third chapter - 2nd heading",
-						"children": {
-							"0": {
-								"level": "subheading",
+						"children": [
+							{
+								"indentLevel": 3,
 								"text": "2sixthmaths",
-								"children": null,
-								"order": null
+								"children": []
 							},
-							"1": {
-								"level": "subheading",
+							{
+								"indentLevel": 3,
 								"text": "2seventhmaths",
-								"children": null,
-								"order": null
+								"children": []
 							}
-						},
-						"order": [1, 0]
+						]
 					},
-					"3": {
-						"level": "heading",
+					{
+						"indentLevel": 2,
 						"text": "third chapter - 3rd heading",
-						"children": {
-							"0": {
-								"level": "subheading",
+						"children": [
+							{
+								"indentLevel": 3,
 								"text": "third chapter - 3rd heading - 0th subheading",
-								"children": null,
-								"order": null
+								"children": []
 							},
-							"1": {
-								"level": "subheading",
+							{
+								"indentLevel": 3,
 								"text": "third chapter - 3rd heading - 1st subheading",
-								"children": null,
-								"order": null
+								"children": []
 							},
-							"2": {
-								"level": "subheading",
+							{
+								"indentLevel": 3,
 								"text": "third chapter - 3rd heading - 2nd subheading",
-								"children": null,
-								"order": null
+								"children": []
 							},
-							"3": {
-								"level": "subheading",
+							{
+								"indentLevel": 3,
 								"text": "third chapter - 3rd heading - 3rd subheading",
-								"children": null,
-								"order": null
+								"children": []
 							}
-						},
-						"order": [1, 2, 3, 0]
+						]
 					}
-				},
-				"order": [2, 0, 1, 3]
+				]
 			}
-		},
-		"order": [3, 1, 0, 2]
+		]
+	},
+	{
+		"indentLevel": 0,
+		"text": "Science",
+		"children": [
+			{
+				"indentLevel": 1,
+				"text": "zeroth chapter",
+				"children": []
+			},
+			{
+				"indentLevel": 1,
+				"text": "first chapter",
+				"children": [
+					{
+						"indentLevel": 2,
+						"text": "first chapter - 0th heading",
+						"children": []
+					},
+					{
+						"indentLevel": 2,
+						"text": "first chapter - 1st heading",
+						"children": []
+					},
+					{
+						"indentLevel": 2,
+						"text": "first chapter - 2nd heading",
+						"children": [
+							{
+								"indentLevel": 3,
+								"text": "first chapter - 2nd heading - 0th subheading",
+								"children": []
+							}
+						]
+					},
+					{
+						"indentLevel": 2,
+						"text": "first chapter - 3rd heading",
+						"children": [
+							{
+								"indentLevel": 3,
+								"text": "first chapter - 3rd heading - 0th subheading",
+								"children": []
+							},
+							{
+								"indentLevel": 3,
+								"text": "first chapter - 3rd heading - 1st subheading",
+								"children": []
+							},
+							{
+								"indentLevel": 3,
+								"text": "first chapter - 3rd heading - 2nd subheading",
+								"children": []
+							},
+							{
+								"indentLevel": 3,
+								"text": "first chapter - 3rd heading - 3rd subheading",
+								"children": []
+							}
+						]
+					}
+				]
+			},
+			{
+				"indentLevel": 1,
+				"text": "second chapter",
+				"children": []
+			},
+			{
+				"indentLevel": 1,
+				"text": "third chapter",
+				"children": [
+					{
+						"indentLevel": 2,
+						"text": "third chapter - 0th heading",
+						"children": [
+							{
+								"indentLevel": 3,
+								"text": "2thirdmaths",
+								"children": []
+							},
+							{
+								"indentLevel": 3,
+								"text": "2fourthmaths",
+								"children": []
+							}
+						]
+					},
+					{
+						"indentLevel": 2,
+						"text": "third chapter - 1st heading",
+						"children": [
+							{
+								"indentLevel": 3,
+								"text": "2sixthmaths",
+								"children": []
+							},
+							{
+								"indentLevel": 3,
+								"text": "2seventhmaths",
+								"children": []
+							}
+						]
+					},
+					{
+						"indentLevel": 2,
+						"text": "third chapter - 2nd heading",
+						"children": [
+							{
+								"indentLevel": 3,
+								"text": "2sixthmaths",
+								"children": []
+							},
+							{
+								"indentLevel": 3,
+								"text": "2seventhmaths",
+								"children": []
+							}
+						]
+					},
+					{
+						"indentLevel": 2,
+						"text": "third chapter - 3rd heading",
+						"children": [
+							{
+								"indentLevel": 3,
+								"text": "third chapter - 3rd heading - 0th subheading",
+								"children": []
+							},
+							{
+								"indentLevel": 3,
+								"text": "third chapter - 3rd heading - 1st subheading",
+								"children": []
+							},
+							{
+								"indentLevel": 3,
+								"text": "third chapter - 3rd heading - 2nd subheading",
+								"children": []
+							},
+							{
+								"indentLevel": 3,
+								"text": "third chapter - 3rd heading - 3rd subheading",
+								"children": []
+							}
+						]
+					}
+				]
+			}
+		]
 	}
 ]

@@ -20,7 +20,7 @@ export default function TopBar({ newSubjectName, handleChange, addSubject, jsonD
 					Add Subject
 				</button>
 			</form>
-			{!(jsonData.length === 0) && (
+			{!(jsonData === undefined) && (
 				<button className="exportButton" type="submit" onClick={exportToJson}>
 					Export To JSON
 				</button>

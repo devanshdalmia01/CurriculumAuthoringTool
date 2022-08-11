@@ -4,11 +4,10 @@ import OutdentIcon from "../Assets/Icons/OutdentIcon";
 import IndentIcon from "../Assets/Icons/IndentIcon";
 import DeleteIcon from "../Assets/Icons/DeleteIcon";
 
-export default function SubHeadingNode({ subHeadingData, subHeadingOrderData }) {
+export default function SubHeadingNode({ subHeadingData }) {
 	return (
 		<>
-			{subHeadingOrderData.map((order, index) => {
-				let data = Object.values(subHeadingData)[order];
+			{subHeadingData.map((data, index) => {
 				let makingUnique = Math.random();
 				return (
 					<div key={index}>

@@ -5,11 +5,10 @@ import IndentIcon from "../Assets/Icons/IndentIcon";
 import DeleteIcon from "../Assets/Icons/DeleteIcon";
 import HeadingNode from "./HeadingNode";
 
-export default function ChapterNode({ chapterData, chapterOrderData }) {
+export default function ChapterNode({ chapterData }) {
 	return (
 		<>
-			{chapterOrderData.map((order, index) => {
-				let data = Object.values(chapterData)[order];
+			{chapterData.map((data, index) => {
 				let makingUnique = Math.random();
 				return (
 					<div key={index}>
@@ -37,7 +36,7 @@ export default function ChapterNode({ chapterData, chapterOrderData }) {
 							<input className="inputField" type="text" id={`chapterText${makingUnique}`} defaultValue={data.text} />
 						</div>
 						<hr className="line" />
-						<HeadingNode headingData={data.children} headingOrderData={data.order} />
+						<HeadingNode headingData={data.children} />
 					</div>
 				);
 			})}

@@ -6,9 +6,12 @@ import TableHeading from "../Components/TableHeading";
 import TopBar from "../Components/TopBar";
 import AddRowButton from "../Components/AddRowButton";
 import AddSubjectButton from "../Components/AddSubjectButton";
+import { useDispatch, useSelector } from "react-redux";
+import { actions } from "../Data/data";
 
 export default function MakeCurriculum() {
-	const [jsonData, setJsonData] = useState([]);
+	const dispatch = useDispatch();
+	const jsonData = useSelector((state) => state);
 	const [newSubjectName, setNewSubjectName] = useState("");
 	const [currentSubjectName, setCurrentSubjectName] = useState("");
 	const handleChange = (event) => {
@@ -16,33 +19,23 @@ export default function MakeCurriculum() {
 	};
 	const addSubject = (e) => {
 		e.preventDefault();
-		if (newSubjectName === "") {
-			return toast.warning("Please enter name!");
-		} else {
-			jsonData.push({
-				level: "subject",
-				text: newSubjectName,
-				children: {},
-				order: [],
-			});
-			setCurrentSubjectName(newSubjectName);
-			setNewSubjectName("");
-		}
+		dispatch(actions.addSubject(newSubjectName));
+		setCurrentSubjectName(newSubjectName);
+		setNewSubjectName("");
 	};
-	console.log(jsonData);
+	console.log(jsonData, "idgaf555");
 	return (
 		<>
 			<Base>
 				<main className="mainData">
-					<TopBar newSubjectName={newSubjectName} handleChange={handleChange} addSubject={addSubject} jsonData={jsonData} />
-					{!(jsonData.length === 0) &&
+					<TopBar newSubjectName={newSubjectName} handleChange={handleChange} addSubject={addSubject} />
+					{!(jsonData === undefined) &&
 						jsonData.map((subject, index) => {
 							let subjectName = subject.text;
 							return <AddSubjectButton key={index} subjectName={subjectName} currentSubjectName={currentSubjectName} setCurrentSubjectName={setCurrentSubjectName} />;
 						})}
 					<TableHeading currentSubjectName={currentSubjectName} />
-					{!(jsonData.length === 0) &&
-						jsonData.map((subject, index) => subject.text === currentSubjectName && <ChapterNode key={index} chapterData={subject.children} chapterOrderData={subject.order} />)}
+					{!(jsonData === undefined) && jsonData.map((subject, index) => subject.text === currentSubjectName && <ChapterNode key={index} chapterData={subject.children} />)}
 					<AddRowButton />
 				</main>
 			</Base>

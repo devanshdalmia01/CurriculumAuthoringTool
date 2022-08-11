@@ -2,3 +2,4 @@
 2. up down left right delete enter key press action
 3. Placeholder for input
 4. exception handling
+5. tooltips not working

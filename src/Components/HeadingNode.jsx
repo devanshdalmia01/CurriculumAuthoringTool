@@ -5,11 +5,10 @@ import IndentIcon from "../Assets/Icons/IndentIcon";
 import DeleteIcon from "../Assets/Icons/DeleteIcon";
 import SubHeadingNode from "./SubHeadingNode";
 
-export default function HeadingNode({ headingData, headingOrderData }) {
+export default function HeadingNode({ headingData }) {
 	return (
 		<>
-			{headingOrderData.map((order, index) => {
-				let data = Object.values(headingData)[order];
+			{headingData.map((data, index) => {
 				let makingUnique = Math.random();
 				return (
 					<div key={index}>
@@ -37,7 +36,7 @@ export default function HeadingNode({ headingData, headingOrderData }) {
 							<input className="inputField" type="text" id={`headingText${makingUnique}`} defaultValue={data.text} />
 						</div>
 						<hr className="line" />
-						<SubHeadingNode subHeadingData={data.children} subHeadingOrderData={data.order} />
+						<SubHeadingNode subHeadingData={data.children} />
 					</div>
 				);
 			})}
