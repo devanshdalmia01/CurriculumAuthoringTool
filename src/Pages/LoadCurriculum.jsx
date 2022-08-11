@@ -6,39 +6,24 @@ import TableHeading from "../Components/TableHeading";
 import TopBar from "../Components/TopBar";
 import AddRowButton from "../Components/AddRowButton";
 import AddSubjectButton from "../Components/AddSubjectButton";
+import { useDispatch, useSelector } from "react-redux";
+import { actions } from "../Data/data";
 
 export default function LoadCurriculum() {
 	const [fileName, setFileName] = useState("Select File");
-	const [jsonData, setJsonData] = useState();
 	const [fileUploaded, setFileUploaded] = useState(false);
 	const [file, setFile] = useState("");
-	const [newSubjectName, setNewSubjectName] = useState("");
-	const [currentSubjectName, setCurrentSubjectName] = useState(jsonData ? jsonData[0].text : "");
-	const handleChange = (event) => {
-		setNewSubjectName(event.target.value);
-	};
-	const addSubject = (e) => {
-		e.preventDefault();
-		if (newSubjectName === "") {
-			return toast.warning("Please enter name!");
-		} else {
-			jsonData.push({
-				level: "subject",
-				text: newSubjectName,
-				children: {},
-				order: [],
-			});
-			setCurrentSubjectName(newSubjectName);
-			setNewSubjectName("");
-		}
-	};
+	const [currentSubjectName, setCurrentSubjectName] = useState("");
+	const dispatch = useDispatch();
+	const jsonData = useSelector((state) => state);
+	console.log(jsonData, "idgaf555");
 	const getJSONData = (e) => {
 		e.preventDefault();
 		if (file) {
 			if (file.type.includes("json")) {
 				const reader = new FileReader();
 				reader.onload = async (e) => {
-					setJsonData(JSON.parse(e.target.result));
+					dispatch(actions.getDataFromFile(JSON.parse(e.target.result)));
 					setFileUploaded(true);
 				};
 				reader.readAsText(file);
@@ -49,24 +34,31 @@ export default function LoadCurriculum() {
 			return toast.error("Please select a file.");
 		}
 	};
-	useEffect(() => {
-		if (jsonData) {
-			setCurrentSubjectName(jsonData[0].text);
-		}
-	}, [fileUploaded, jsonData]);
 	return (
 		<>
 			<Base>
 				{fileUploaded ? (
 					<main className="mainData">
-						<TopBar newSubjectName={newSubjectName} handleChange={handleChange} addSubject={addSubject} jsonData={jsonData} />
-						{jsonData.map((subject, index) => {
-							let subjectName = subject.text;
-							return <AddSubjectButton key={index} subjectName={subjectName} currentSubjectName={currentSubjectName} setCurrentSubjectName={setCurrentSubjectName} />;
-						})}
-						<TableHeading currentSubjectName={currentSubjectName} />
-						{jsonData.map((subject, index) => subject.text === currentSubjectName && <ChapterNode key={index} chapterData={subject.children} chapterOrderData={subject.order} />)}
-						<AddRowButton />
+						<TopBar setCurrentSubjectName={setCurrentSubjectName} />
+						{!(jsonData.length === 0) &&
+							jsonData.map((subject, index) => {
+								let subjectName = subject.text;
+								return <AddSubjectButton key={index} subjectName={subjectName} currentSubjectName={currentSubjectName} setCurrentSubjectName={setCurrentSubjectName} />;
+							})}
+						{!(jsonData.length === 0) ? (
+							jsonData.map(
+								(subject, index) =>
+									subject.text === currentSubjectName && (
+										<div key={index}>
+											<TableHeading currentSubjectName={currentSubjectName} />
+											<ChapterNode chapterData={subject.children} subjectId={subject.id} />
+											<AddRowButton subjectId={subject.id} />
+										</div>
+									)
+							)
+						) : (
+							<h1 style={{ marginTop: "30px", textAlign: "center" }}>First Add A Subject</h1>
+						)}
 					</main>
 				) : (
 					<main className="uploadFile fromLoadCurriculum">

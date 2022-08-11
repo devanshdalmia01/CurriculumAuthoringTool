@@ -6,6 +6,9 @@ const dataSlice = createSlice({
 	name: "data",
 	initialState: [],
 	reducers: {
+		getDataFromFile(state, action) {
+			return action.payload;
+		},
 		addSubject(state, action) {
 			const tempState = state;
 			tempState.push({
