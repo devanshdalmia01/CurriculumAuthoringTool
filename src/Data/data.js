@@ -10,12 +10,10 @@ const dataSlice = createSlice({
 			const tempState = state;
 			tempState.push({
 				id: uuidv4(),
-				indentLevel: 0,
 				text: action.payload,
 				children: [
 					{
 						id: uuidv4(),
-						indentLevel: 1,
 						text: "",
 						children: [],
 					},
@@ -26,13 +24,35 @@ const dataSlice = createSlice({
 		addStandard(state, action) {
 			const tempState = state;
 			let subjectIndex = tempState.findIndex((subject) => subject.id === action.payload);
-			tempState[subjectIndex].children.push({
-				id: uuidv4(),
-				indentLevel: 1,
-				text: "",
-				children: [],
-			});
-			return tempState;
+			if (tempState[subjectIndex].children.length === 0) {
+				tempState[subjectIndex].children.push({
+					id: uuidv4(),
+					text: "",
+					children: [],
+				});
+				return tempState;
+			} else if (tempState[subjectIndex].children.at(-1).children.length === 0) {
+				tempState[subjectIndex].children.push({
+					id: uuidv4(),
+					text: "",
+					children: [],
+				});
+				return tempState;
+			} else if (tempState[subjectIndex].children.at(-1).children.at(-1).children.length === 0) {
+				tempState[subjectIndex].children.at(-1).children.push({
+					id: uuidv4(),
+					text: "",
+					children: [],
+				});
+				return tempState;
+			} else if (tempState[subjectIndex].children.at(-1).children.at(-1).children.at(-1).children.length === 0) {
+				tempState[subjectIndex].children.at(-1).children.at(-1).children.push({
+					id: uuidv4(),
+					text: "",
+					children: [],
+				});
+				return tempState;
+			}
 		},
 		deleteStandard(state, action) {
 			const tempState = state;
@@ -157,7 +177,6 @@ const dataSlice = createSlice({
 					let chapterIndex = tempState[subjectIndex].children.findIndex((chapter) => chapter.id === action.payload[1]);
 					tempState[subjectIndex].children[chapterIndex - 1].children.push({
 						id: tempState[subjectIndex].children[chapterIndex].id,
-						indentLevel: 2,
 						text: tempState[subjectIndex].children[chapterIndex].text,
 						children: [],
 					});
@@ -176,7 +195,6 @@ const dataSlice = createSlice({
 					let headingIndex = tempState[subjectIndex].children[chapterIndex].children.findIndex((heading) => heading.id === action.payload[2]);
 					tempState[subjectIndex].children[chapterIndex].children[headingIndex - 1].children.push({
 						id: tempState[subjectIndex].children[chapterIndex].children[headingIndex].id,
-						indentLevel: 3,
 						text: tempState[subjectIndex].children[chapterIndex].children[headingIndex].text,
 						children: [],
 					});
