@@ -50,7 +50,7 @@ export default function SubHeadingNode({ subjectId, chapterId, headingId, subHea
 							</div>
 							<div className="highlighterDiv">&nbsp;</div>
 							<label htmlFor={data.id}></label>
-							<input className="inputField" type="text" id={data.id} value={data.text} onChange={(e) => handleUpdate(e, data.id)} />
+							<input placeholder="Enter subheading name" className="inputField" type="text" id={data.id} value={data.text} onChange={(e) => handleUpdate(e, data.id)} autoFocus={true} />
 						</div>
 						<hr className="line" />
 					</div>

@@ -34,7 +34,7 @@ export default function TopBar({ setCurrentSubjectName }) {
 				<label className="addSubjectLabel" htmlFor="newSubjectName">
 					Enter Subject Name
 				</label>
-				<input className="addSubjectInput" type="text" id="newSubjectName" placeholder="Example - Mathematics" value={newSubjectName} onChange={handleChange} />
+				<input className="addSubjectInput" type="text" id="newSubjectName" placeholder="Example - Mathematics" value={newSubjectName} onChange={handleChange} autoFocus={true} />
 				<button className="addSubjectButton" type="submit" onClick={handleAddSubject}>
 					Add Subject
 				</button>
