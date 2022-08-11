@@ -17,9 +17,13 @@ export default function SubHeadingNode({ subjectId, chapterId, headingId, subHea
 		e.preventDefault();
 		dispatch(actions.deleteStandard([subjectId, chapterId, headingId, subHeadingId]));
 	};
-	const handleIndent = (e, subHeadingId) => {
+	const handleIndent = (e) => {
 		e.preventDefault();
 		return toast.error("You cannot indent a subheading!");
+	};
+	const handleOutdent = (e, subHeadingId) => {
+		e.preventDefault();
+		dispatch(actions.outdentStandard([subjectId, chapterId, headingId, subHeadingId]));
 	};
 	return (
 		<>
@@ -34,10 +38,10 @@ export default function SubHeadingNode({ subjectId, chapterId, headingId, subHea
 								<button data-tip="Move Down">
 									<DownIcon width="20" height="20" />
 								</button>
-								<button data-tip="Outdent">
+								<button data-tip="Outdent" onClick={(e) => handleOutdent(e, data.id)}>
 									<OutdentIcon width="20" height="20" />
 								</button>
-								<button data-tip="Indent" onClick={(e) => handleIndent(e, data.id)}>
+								<button data-tip="Indent" onClick={handleIndent}>
 									<IndentIcon width="20" height="20" />
 								</button>
 								<button data-tip="Delete" onClick={(e) => handleDelete(e, data.id)}>

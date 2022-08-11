@@ -21,6 +21,10 @@ export default function HeadingNode({ subjectId, chapterId, headingData }) {
 		e.preventDefault();
 		dispatch(actions.indentStandard([subjectId, chapterId, headingId]));
 	};
+	const handleOutdent = (e, headingId) => {
+		e.preventDefault();
+		dispatch(actions.outdentStandard([subjectId, chapterId, headingId]));
+	};
 	return (
 		<>
 			{headingData.map((data) => {
@@ -34,7 +38,7 @@ export default function HeadingNode({ subjectId, chapterId, headingData }) {
 								<button data-tip="Move Down">
 									<DownIcon width="20" height="20" />
 								</button>
-								<button data-tip="Outdent">
+								<button data-tip="Outdent" onClick={(e) => handleOutdent(e, data.id)}>
 									<OutdentIcon width="20" height="20" />
 								</button>
 								<button data-tip="Indent" onClick={(e) => handleIndent(e, data.id)}>

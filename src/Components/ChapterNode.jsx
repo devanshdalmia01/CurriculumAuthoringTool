@@ -6,6 +6,7 @@ import DeleteIcon from "../Assets/Icons/DeleteIcon";
 import HeadingNode from "./HeadingNode";
 import { useDispatch } from "react-redux";
 import { actions } from "../Data/data";
+import { toast } from "react-toastify";
 
 export default function ChapterNode({ subjectId, chapterData }) {
 	const dispatch = useDispatch();
@@ -21,6 +22,10 @@ export default function ChapterNode({ subjectId, chapterData }) {
 		e.preventDefault();
 		dispatch(actions.indentStandard([subjectId, chapterId]));
 	};
+	const handleOutdent = (e) => {
+		e.preventDefault();
+		return toast.error("You cannot outdent a chapter!");
+	};
 	return (
 		<>
 			{chapterData.map((data) => {
@@ -34,7 +39,7 @@ export default function ChapterNode({ subjectId, chapterData }) {
 								<button data-tip="Move Down">
 									<DownIcon width="20" height="20" />
 								</button>
-								<button data-tip="Outdent">
+								<button data-tip="Outdent" onClick={handleOutdent}>
 									<OutdentIcon width="20" height="20" />
 								</button>
 								<button data-tip="Indent" onClick={(e) => handleIndent(e, data.id)}>
