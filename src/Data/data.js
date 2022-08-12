@@ -1,4 +1,4 @@
-import { configureStore, createSlice, current } from "@reduxjs/toolkit";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
 
@@ -209,8 +209,76 @@ const dataSlice = createSlice({
 				}
 			}
 		},
-		moveUpStandard(state, action) {},
-		moveDownStandard(state, action) {},
+		moveUpStandard(state, action) {
+			const tempState = state;
+			if (action.payload.length === 2) {
+				let subjectIndex = tempState.findIndex((subject) => subject.id === action.payload[0]);
+				let chapterIndex = tempState[subjectIndex].children.findIndex((chapter) => chapter.id === action.payload[1]);
+				if (chapterIndex === 0) {
+					toast.error("First chapter cannot be moved upwards");
+				} else {
+					[tempState[subjectIndex].children[chapterIndex - 1], tempState[subjectIndex].children[chapterIndex]] = [
+						tempState[subjectIndex].children[chapterIndex],
+						tempState[subjectIndex].children[chapterIndex - 1],
+					];
+					return tempState;
+				}
+			}
+			if (action.payload.length === 3) {
+				let subjectIndex = tempState.findIndex((subject) => subject.id === action.payload[0]);
+				let chapterIndex = tempState[subjectIndex].children.findIndex((chapter) => chapter.id === action.payload[1]);
+				let headingIndex = tempState[subjectIndex].children[chapterIndex].children.findIndex((heading) => heading.id === action.payload[2]);
+				if (headingIndex === 0 && chapterIndex === 0) {
+					toast.error("Cannot be moved upwards.");
+				} else if (headingIndex === 0 && chapterIndex !== 0) {
+					tempState[subjectIndex].children[chapterIndex - 1].children.push(tempState[subjectIndex].children[chapterIndex].children[headingIndex]);
+					tempState[subjectIndex].children[chapterIndex].children.splice(headingIndex, 1);
+					return tempState;
+				} else {
+					[tempState[subjectIndex].children[chapterIndex].children[headingIndex - 1], tempState[subjectIndex].children[chapterIndex].children[headingIndex]] = [
+						tempState[subjectIndex].children[chapterIndex].children[headingIndex],
+						tempState[subjectIndex].children[chapterIndex].children[headingIndex - 1],
+					];
+					return tempState;
+				}
+			}
+		},
+		moveDownStandard(state, action) {
+			const tempState = state;
+			if (action.payload.length === 2) {
+				let subjectIndex = tempState.findIndex((subject) => subject.id === action.payload[0]);
+				let chapterIndex = tempState[subjectIndex].children.findIndex((chapter) => chapter.id === action.payload[1]);
+				if (chapterIndex === tempState[subjectIndex].children.length - 1) {
+					toast.error("Last chapter cannot be moved downwards");
+				} else {
+					[tempState[subjectIndex].children[chapterIndex + 1], tempState[subjectIndex].children[chapterIndex]] = [
+						tempState[subjectIndex].children[chapterIndex],
+						tempState[subjectIndex].children[chapterIndex + 1],
+					];
+					return tempState;
+				}
+			}
+			if (action.payload.length === 3) {
+				let subjectIndex = tempState.findIndex((subject) => subject.id === action.payload[0]);
+				let chapterIndex = tempState[subjectIndex].children.findIndex((chapter) => chapter.id === action.payload[1]);
+				let headingIndex = tempState[subjectIndex].children[chapterIndex].children.findIndex((heading) => heading.id === action.payload[2]);
+				if (headingIndex === tempState[subjectIndex].children[chapterIndex].children.length - 1 && chapterIndex === tempState[subjectIndex].children.length - 1) {
+					tempState[subjectIndex].children.push(tempState[subjectIndex].children[chapterIndex].children[headingIndex]);
+					tempState[subjectIndex].children[chapterIndex].children.splice(headingIndex, 1);
+					return tempState;
+				} else if (headingIndex === tempState[subjectIndex].children[chapterIndex].children.length - 1 && chapterIndex !== tempState[subjectIndex].children.length - 1) {
+					tempState[subjectIndex].children[chapterIndex + 1].children.unshift(tempState[subjectIndex].children[chapterIndex].children[headingIndex]);
+					tempState[subjectIndex].children[chapterIndex].children.splice(headingIndex, 1);
+					return tempState;
+				} else {
+					[tempState[subjectIndex].children[chapterIndex].children[headingIndex + 1], tempState[subjectIndex].children[chapterIndex].children[headingIndex]] = [
+						tempState[subjectIndex].children[chapterIndex].children[headingIndex],
+						tempState[subjectIndex].children[chapterIndex].children[headingIndex + 1],
+					];
+					return tempState;
+				}
+			}
+		},
 	},
 });
 const store = configureStore({

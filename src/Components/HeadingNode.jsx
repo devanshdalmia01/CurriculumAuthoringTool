@@ -26,6 +26,14 @@ export default function HeadingNode({ subjectId, chapterId, headingData }) {
 		e.preventDefault();
 		dispatch(actions.outdentStandard([subjectId, chapterId, headingId]));
 	};
+	const handleMoveUp = (e, headingId) => {
+		e.preventDefault();
+		dispatch(actions.moveUpStandard([subjectId, chapterId, headingId]));
+	};
+	const handleMoveDown = (e, headingId) => {
+		e.preventDefault();
+		dispatch(actions.moveDownStandard([subjectId, chapterId, headingId]));
+	};
 	return (
 		<>
 			{headingData.map((data) => {
@@ -34,10 +42,10 @@ export default function HeadingNode({ subjectId, chapterId, headingData }) {
 						<div className="heading">
 							<div className="iconsDiv">
 								<ReactTooltip type="light" effect="solid" className="toolTip" />
-								<button data-tip="Move Up">
+								<button data-tip="Move Up" onClick={(e) => handleMoveUp(e, data.id)}>
 									<UpIcon width="20" height="20" />
 								</button>
-								<button data-tip="Move Down">
+								<button data-tip="Move Down" onClick={(e) => handleMoveDown(e, data.id)}>
 									<DownIcon width="20" height="20" />
 								</button>
 								<button data-tip="Outdent" onClick={(e) => handleOutdent(e, data.id)}>

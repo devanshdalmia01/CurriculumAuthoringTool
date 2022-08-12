@@ -27,6 +27,14 @@ export default function ChapterNode({ subjectId, chapterData }) {
 		e.preventDefault();
 		return toast.error("You cannot outdent a chapter!");
 	};
+	const handleMoveUp = (e, chapterId) => {
+		e.preventDefault();
+		dispatch(actions.moveUpStandard([subjectId, chapterId]));
+	};
+	const handleMoveDown = (e, chapterId) => {
+		e.preventDefault();
+		dispatch(actions.moveDownStandard([subjectId, chapterId]));
+	};
 	return (
 		<>
 			{chapterData.map((data) => {
@@ -35,10 +43,10 @@ export default function ChapterNode({ subjectId, chapterData }) {
 						<div className="chapter">
 							<div className="iconsDiv">
 								<ReactTooltip type="light" effect="solid" className="toolTip" />
-								<button data-tip="Move Up">
+								<button data-tip="Move Up" onClick={(e) => handleMoveUp(e, data.id)}>
 									<UpIcon width="20" height="20" />
 								</button>
-								<button data-tip="Move Down">
+								<button data-tip="Move Down" onClick={(e) => handleMoveDown(e, data.id)}>
 									<DownIcon width="20" height="20" />
 								</button>
 								<button data-tip="Outdent" onClick={handleOutdent}>
