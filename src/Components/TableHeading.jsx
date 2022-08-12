@@ -8,7 +8,7 @@ export default function TableHeading({ currentSubjectName }) {
 					Actions
 					<span>
 						<br />
-						Move, Outdent,
+						Move Up, Move Down, Outdent,
 						<br />
 						Indent, Delete
 					</span>
