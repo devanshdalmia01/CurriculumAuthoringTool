@@ -9,7 +9,7 @@ import { actions } from "../Data/data";
 import { toast } from "react-toastify";
 import ReactTooltip from "react-tooltip";
 
-export default function ChapterNode({ subjectId, chapterData }) {
+export default function ChapterNode({ subjectId, chapterData, pressEnter, setPressEnter }) {
 	const dispatch = useDispatch();
 	const handleUpdate = (e, chapterId) => {
 		e.preventDefault();
@@ -34,6 +34,11 @@ export default function ChapterNode({ subjectId, chapterData }) {
 	const handleMoveDown = (e, chapterId) => {
 		e.preventDefault();
 		dispatch(actions.moveDownStandard([subjectId, chapterId]));
+	};
+	const handlePressEnter = (e) => {
+		if (e.keyCode === 13) {
+			setPressEnter(!pressEnter);
+		}
 	};
 	return (
 		<>
@@ -61,10 +66,19 @@ export default function ChapterNode({ subjectId, chapterData }) {
 							</div>
 							<div className="highlighterDiv">&nbsp;</div>
 							<label htmlFor={data.id}></label>
-							<input placeholder="Enter chapter name" className="inputField" type="text" id={data.id} value={data.text} onChange={(e) => handleUpdate(e, data.id)} autoFocus={true} />
+							<input
+								onKeyDown={handlePressEnter}
+								placeholder="Enter chapter name"
+								className="inputField"
+								type="text"
+								id={data.id}
+								value={data.text}
+								onChange={(e) => handleUpdate(e, data.id)}
+								autoFocus={true}
+							/>
 						</div>
 						<hr className="line" />
-						<HeadingNode headingData={data.children} subjectId={subjectId} chapterId={data.id} />
+						<HeadingNode headingData={data.children} subjectId={subjectId} chapterId={data.id} pressEnter={pressEnter} setPressEnter={setPressEnter} />
 					</div>
 				);
 			})}

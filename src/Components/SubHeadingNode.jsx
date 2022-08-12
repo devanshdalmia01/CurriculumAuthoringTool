@@ -8,7 +8,7 @@ import { actions } from "../Data/data";
 import { toast } from "react-toastify";
 import ReactTooltip from "react-tooltip";
 
-export default function SubHeadingNode({ subjectId, chapterId, headingId, subHeadingData }) {
+export default function SubHeadingNode({ subjectId, chapterId, headingId, subHeadingData, pressEnter, setPressEnter }) {
 	const dispatch = useDispatch();
 	const handleUpdate = (e, subHeadingId) => {
 		e.preventDefault();
@@ -26,6 +26,19 @@ export default function SubHeadingNode({ subjectId, chapterId, headingId, subHea
 		e.preventDefault();
 		dispatch(actions.outdentStandard([subjectId, chapterId, headingId, subHeadingId]));
 	};
+	const handleMoveUp = (e, subHeadingId) => {
+		e.preventDefault();
+		dispatch(actions.moveUpStandard([subjectId, chapterId, headingId, subHeadingId]));
+	};
+	const handleMoveDown = (e, subHeadingId) => {
+		e.preventDefault();
+		dispatch(actions.moveDownStandard([subjectId, chapterId, headingId, subHeadingId]));
+	};
+	const handlePressEnter = (e) => {
+		if (e.keyCode === 13) {
+			setPressEnter(!pressEnter);
+		}
+	};
 	return (
 		<>
 			{subHeadingData.map((data) => {
@@ -34,10 +47,10 @@ export default function SubHeadingNode({ subjectId, chapterId, headingId, subHea
 						<div className="subheading">
 							<div className="iconsDiv">
 								<ReactTooltip type="light" effect="solid" className="toolTip" />
-								<button data-tip="Move Up">
+								<button data-tip="Move Up" onClick={(e) => handleMoveUp(e, data.id)}>
 									<UpIcon width="20" height="20" />
 								</button>
-								<button data-tip="Move Down">
+								<button data-tip="Move Down" onClick={(e) => handleMoveDown(e, data.id)}>
 									<DownIcon width="20" height="20" />
 								</button>
 								<button data-tip="Outdent" onClick={(e) => handleOutdent(e, data.id)}>
@@ -52,7 +65,16 @@ export default function SubHeadingNode({ subjectId, chapterId, headingId, subHea
 							</div>
 							<div className="highlighterDiv">&nbsp;</div>
 							<label htmlFor={data.id}></label>
-							<input placeholder="Enter subheading name" className="inputField" type="text" id={data.id} value={data.text} onChange={(e) => handleUpdate(e, data.id)} autoFocus={true} />
+							<input
+								onKeyDown={handlePressEnter}
+								placeholder="Enter subheading name"
+								className="inputField"
+								type="text"
+								id={data.id}
+								value={data.text}
+								onChange={(e) => handleUpdate(e, data.id)}
+								autoFocus={true}
+							/>
 						</div>
 						<hr className="line" />
 					</div>

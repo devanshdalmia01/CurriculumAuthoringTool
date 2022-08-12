@@ -14,9 +14,9 @@ export default function LoadCurriculum() {
 	const [fileUploaded, setFileUploaded] = useState(false);
 	const [file, setFile] = useState("");
 	const [currentSubjectName, setCurrentSubjectName] = useState("");
+	const [pressEnter, setPressEnter] = useState(false);
 	const dispatch = useDispatch();
 	const jsonData = useSelector((state) => state);
-	console.log(jsonData, "idgaf555");
 	const getJSONData = (e) => {
 		e.preventDefault();
 		if (file) {
@@ -51,8 +51,8 @@ export default function LoadCurriculum() {
 									subject.text === currentSubjectName && (
 										<div key={index}>
 											<TableHeading currentSubjectName={currentSubjectName} />
-											<ChapterNode chapterData={subject.children} subjectId={subject.id} />
-											<AddRowButton subjectId={subject.id} />
+											<ChapterNode chapterData={subject.children} subjectId={subject.id} pressEnter={pressEnter} setPressEnter={setPressEnter} />
+											<AddRowButton subjectId={subject.id} pressEnter={pressEnter} />
 										</div>
 									)
 							)

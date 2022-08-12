@@ -254,6 +254,24 @@ const dataSlice = createSlice({
 					return tempState;
 				}
 			}
+			if (action.payload.length === 4) {
+				let subjectIndex = tempState.findIndex((subject) => subject.id === action.payload[0]);
+				let chapterIndex = tempState[subjectIndex].children.findIndex((chapter) => chapter.id === action.payload[1]);
+				let headingIndex = tempState[subjectIndex].children[chapterIndex].children.findIndex((heading) => heading.id === action.payload[2]);
+				let subHeadingIndex = tempState[subjectIndex].children[chapterIndex].children[headingIndex].children.findIndex((subHeading) => subHeading.id === action.payload[3]);
+				if (subHeadingIndex === 0) {
+					toast.error("First subheading cannot be moved upwards!");
+				} else {
+					[
+						tempState[subjectIndex].children[chapterIndex].children[headingIndex].children[subHeadingIndex - 1],
+						tempState[subjectIndex].children[chapterIndex].children[headingIndex].children[subHeadingIndex],
+					] = [
+						tempState[subjectIndex].children[chapterIndex].children[headingIndex].children[subHeadingIndex],
+						tempState[subjectIndex].children[chapterIndex].children[headingIndex].children[subHeadingIndex - 1],
+					];
+					return tempState;
+				}
+			}
 		},
 		moveDownStandard(state, action) {
 			const tempState = state;
@@ -286,6 +304,24 @@ const dataSlice = createSlice({
 					[tempState[subjectIndex].children[chapterIndex].children[headingIndex + 1], tempState[subjectIndex].children[chapterIndex].children[headingIndex]] = [
 						tempState[subjectIndex].children[chapterIndex].children[headingIndex],
 						tempState[subjectIndex].children[chapterIndex].children[headingIndex + 1],
+					];
+					return tempState;
+				}
+			}
+			if (action.payload.length === 4) {
+				let subjectIndex = tempState.findIndex((subject) => subject.id === action.payload[0]);
+				let chapterIndex = tempState[subjectIndex].children.findIndex((chapter) => chapter.id === action.payload[1]);
+				let headingIndex = tempState[subjectIndex].children[chapterIndex].children.findIndex((heading) => heading.id === action.payload[2]);
+				let subHeadingIndex = tempState[subjectIndex].children[chapterIndex].children[headingIndex].children.findIndex((subHeading) => subHeading.id === action.payload[3]);
+				if (subHeadingIndex === tempState[subjectIndex].children[chapterIndex].children[headingIndex].children.length - 1) {
+					toast.error("Last subheading cannot be moved downwards!");
+				} else {
+					[
+						tempState[subjectIndex].children[chapterIndex].children[headingIndex].children[subHeadingIndex + 1],
+						tempState[subjectIndex].children[chapterIndex].children[headingIndex].children[subHeadingIndex],
+					] = [
+						tempState[subjectIndex].children[chapterIndex].children[headingIndex].children[subHeadingIndex],
+						tempState[subjectIndex].children[chapterIndex].children[headingIndex].children[subHeadingIndex + 1],
 					];
 					return tempState;
 				}

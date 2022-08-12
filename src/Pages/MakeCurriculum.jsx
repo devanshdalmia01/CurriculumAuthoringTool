@@ -9,8 +9,8 @@ import { useSelector } from "react-redux";
 
 export default function MakeCurriculum() {
 	const [currentSubjectName, setCurrentSubjectName] = useState("");
+	const [pressEnter, setPressEnter] = useState(false);
 	const jsonData = useSelector((state) => state);
-	console.log(jsonData, "idgaf555");
 	return (
 		<>
 			<Base>
@@ -27,8 +27,8 @@ export default function MakeCurriculum() {
 								subject.text === currentSubjectName && (
 									<div key={index}>
 										<TableHeading currentSubjectName={currentSubjectName} />
-										<ChapterNode chapterData={subject.children} subjectId={subject.id} />
-										<AddRowButton subjectId={subject.id} />
+										<ChapterNode chapterData={subject.children} subjectId={subject.id} pressEnter={pressEnter} setPressEnter={setPressEnter} />
+										<AddRowButton subjectId={subject.id} pressEnter={pressEnter} />
 									</div>
 								)
 						)

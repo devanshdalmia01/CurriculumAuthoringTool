@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { actions } from "../Data/data";
 import ReactTooltip from "react-tooltip";
 
-export default function HeadingNode({ subjectId, chapterId, headingData }) {
+export default function HeadingNode({ subjectId, chapterId, headingData, pressEnter, setPressEnter }) {
 	const dispatch = useDispatch();
 	const handleUpdate = (e, headingId) => {
 		e.preventDefault();
@@ -33,6 +33,11 @@ export default function HeadingNode({ subjectId, chapterId, headingData }) {
 	const handleMoveDown = (e, headingId) => {
 		e.preventDefault();
 		dispatch(actions.moveDownStandard([subjectId, chapterId, headingId]));
+	};
+	const handlePressEnter = (e) => {
+		if (e.keyCode === 13) {
+			setPressEnter(!pressEnter);
+		}
 	};
 	return (
 		<>
@@ -60,10 +65,19 @@ export default function HeadingNode({ subjectId, chapterId, headingData }) {
 							</div>
 							<div className="highlighterDiv">&nbsp;</div>
 							<label htmlFor={data.id}></label>
-							<input placeholder="Enter heading name" className="inputField" type="text" id={data.id} value={data.text} onChange={(e) => handleUpdate(e, data.id)} autoFocus={true} />
+							<input
+								onKeyDown={handlePressEnter}
+								placeholder="Enter heading name"
+								className="inputField"
+								type="text"
+								id={data.id}
+								value={data.text}
+								onChange={(e) => handleUpdate(e, data.id)}
+								autoFocus={true}
+							/>
 						</div>
 						<hr className="line" />
-						<SubHeadingNode subHeadingData={data.children} subjectId={subjectId} chapterId={chapterId} headingId={data.id} />
+						<SubHeadingNode subHeadingData={data.children} subjectId={subjectId} chapterId={chapterId} headingId={data.id} pressEnter={pressEnter} setPressEnter={setPressEnter} />
 					</div>
 				);
 			})}
