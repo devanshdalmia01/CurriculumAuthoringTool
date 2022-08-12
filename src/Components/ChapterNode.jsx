@@ -49,19 +49,19 @@ export default function ChapterNode({ subjectId, chapterData, pressEnter, setPre
 							<div className="iconsDiv">
 								<ReactTooltip type="light" effect="solid" className="toolTip" />
 								<button data-tip="Move Up" onClick={(e) => handleMoveUp(e, data.id)}>
-									<UpIcon width="20" height="20" />
+									<UpIcon />
 								</button>
 								<button data-tip="Move Down" onClick={(e) => handleMoveDown(e, data.id)}>
-									<DownIcon width="20" height="20" />
+									<DownIcon />
 								</button>
 								<button data-tip="Outdent" onClick={handleOutdent}>
-									<OutdentIcon width="20" height="20" />
+									<OutdentIcon />
 								</button>
 								<button data-tip="Indent" onClick={(e) => handleIndent(e, data.id)}>
-									<IndentIcon width="20" height="20" />
+									<IndentIcon />
 								</button>
 								<button data-tip="Delete" onClick={(e) => handleDelete(e, data.id)}>
-									<DeleteIcon width="20" height="20" />
+									<DeleteIcon />
 								</button>
 							</div>
 							<div className="highlighterDiv">&nbsp;</div>

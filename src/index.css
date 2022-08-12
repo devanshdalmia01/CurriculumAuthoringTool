@@ -2,12 +2,12 @@ body {
 	margin: 0;
 	background-color: lightgoldenrodyellow;
 	font-family: Inter, sans-serif;
-	color: white;
+	color: #ffffff;
 }
 h1,
 p {
 	margin: 0;
-	border: 0;
+	border: none;
 	padding: 0;
 }
 .header {
@@ -22,9 +22,6 @@ p {
 	padding: 30px;
 	box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.3);
 }
-.invisible {
-	display: none;
-}
 footer h1 {
 	text-align: center;
 	width: 100%;
@@ -37,7 +34,7 @@ footer h1 {
 .exportButton,
 .uploadButton {
 	margin-right: 16px;
-	background-color: white;
+	background-color: #ffffff;
 	color: #242021;
 	padding: 7px 15px;
 	border-radius: 5px;
@@ -46,21 +43,6 @@ footer h1 {
 	font-weight: 600;
 	transition: all 0.25s ease;
 	cursor: pointer;
-}
-.subjectChangeButton.active {
-	background-color: #2cbcb2;
-	color: #fff;
-}
-.subjectChangeButton.active:hover {
-	background-color: #2cbcb2;
-	color: #fff;
-}
-.subjectChangeButton:hover,
-.addSubjectButton:hover,
-.exportButton:hover,
-.uploadButton:hover {
-	background-color: #2cbcb2;
-	color: white;
 }
 .addSubjectLabel {
 	font-weight: 500;
@@ -82,7 +64,7 @@ footer h1 {
 	margin: 175px 400px;
 }
 .selectOption {
-	background-color: white;
+	background-color: #ffffff;
 	text-decoration: none;
 	color: #242021;
 	padding: 20px;
@@ -91,10 +73,6 @@ footer h1 {
 	border-radius: 5px;
 	border: none;
 	transition: all 0.25s ease;
-}
-.selectOption:hover {
-	background-color: #2cbcb2;
-	color: white;
 }
 .subjectName {
 	text-transform: uppercase;
@@ -107,7 +85,7 @@ footer h1 {
 	border-right: none;
 	border-bottom: none;
 	border-left: none;
-	border-color: white;
+	border-color: #ffffff;
 	border-width: 0.5px;
 }
 .tableHeading {
@@ -126,7 +104,7 @@ footer h1 {
 	text-transform: none;
 	font-size: 14px;
 	letter-spacing: 0px;
-	color: #fff;
+	color: #ffffff;
 }
 .chapter button,
 .heading button,
@@ -137,7 +115,9 @@ footer h1 {
 	padding: 0;
 	cursor: pointer;
 }
-.chapter {
+.chapter,
+.heading,
+.subheading {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -145,7 +125,9 @@ footer h1 {
 	padding: 5px 0px;
 	border-radius: 5px;
 }
-.chapter .iconsDiv {
+.chapter .iconsDiv,
+.heading .iconsDiv,
+.subheading .iconsDiv {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -157,7 +139,9 @@ footer h1 {
 	width: 3%;
 	height: 100%;
 }
-.chapter .inputField {
+.chapter .inputField,
+.heading .inputField,
+.subheading .inputField {
 	flex-grow: 1;
 	margin: 0px 0px 0px 20px;
 	padding: 7px 15px;
@@ -167,20 +151,6 @@ footer h1 {
 	font-size: 14px;
 	font-weight: 600;
 }
-.heading {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin: 5px 0px;
-	padding: 5px 0px;
-	border-radius: 5px;
-}
-.heading .iconsDiv {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	width: 15%;
-}
 .heading .highlighterDiv {
 	margin-left: 20px;
 	background-color: #2cbcb2;
@@ -188,28 +158,7 @@ footer h1 {
 	height: 100%;
 }
 .heading .inputField {
-	flex-grow: 1;
-	margin: 0px 0px 0px 20px;
-	padding: 7px 15px;
-	border-radius: 5px;
-	border: none;
-	outline: none;
-	font-size: 14px;
 	font-weight: 400;
-}
-.subheading {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin: 5px 0px;
-	padding: 5px 0px;
-	border-radius: 5px;
-}
-.subheading .iconsDiv {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	width: 15%;
 }
 .subheading .highlighterDiv {
 	margin-left: 20px;
@@ -218,13 +167,6 @@ footer h1 {
 	height: 100%;
 }
 .subheading .inputField {
-	flex-grow: 1;
-	margin: 0px 0px 0px 20px;
-	padding: 7px 15px;
-	border-radius: 5px;
-	border: none;
-	outline: none;
-	font-size: 14px;
 	font-weight: 200;
 	color: #696969;
 }
@@ -233,7 +175,7 @@ footer h1 {
 	justify-content: center;
 	align-items: center;
 	width: 100%;
-	background-color: white;
+	background-color: #ffffff;
 	color: #242021;
 	padding: 7px 15px;
 	border-radius: 5px;
@@ -244,17 +186,7 @@ footer h1 {
 	transition: all 0.25s ease;
 	cursor: pointer;
 }
-.addRowButton:hover {
-	background-color: #2cbcb2;
-	color: #fff;
-}
-.addRowButton svg .lineColor {
-	fill: #242021;
-	transition: all 0.25s ease;
-}
-.addRowButton:hover svg .lineColor {
-	fill: #fff;
-}
+.addRowButton svg .lineColor,
 .iconsDiv button svg .lineColor {
 	fill: #242021;
 	transition: all 0.25s ease;
@@ -292,22 +224,31 @@ footer h1 {
 	font-weight: 600;
 	color: #242021;
 	padding: 20px 25px;
-	background-color: white;
+	background-color: #ffffff;
 	transition: all 0.25s ease;
 	cursor: pointer;
 	margin-right: 25px;
 }
-.uploadFile label:hover {
-	background-color: #2cbcb2;
-	color: #fff;
-}
 .uploadFile label svg path {
 	transition: all 0.25s ease;
 }
+.addRowButton:hover svg .lineColor,
 .uploadFile label:hover svg path {
-	fill: #fff;
+	fill: #ffffff;
 }
 footer a {
 	text-decoration: underline;
 	color: #000;
+}
+.subjectChangeButton:hover,
+.addSubjectButton:hover,
+.exportButton:hover,
+.uploadButton:hover,
+.selectOption:hover,
+.subjectChangeButton.active,
+.subjectChangeButton.active:hover,
+.addRowButton:hover,
+.uploadFile label:hover {
+	background-color: #2cbcb2;
+	color: #ffffff;
 }

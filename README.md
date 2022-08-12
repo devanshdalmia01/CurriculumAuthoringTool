@@ -131,3 +131,5 @@ https://curriculumauthoringtool.netlify.app
 ## Future Scope
 
 -   Save data in local storage, so that the data remains even after refresh
+-   Make UI adaptive
+-   Make backend and store data in cloud and make login logout features

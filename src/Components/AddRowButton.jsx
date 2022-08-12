@@ -17,10 +17,10 @@ export default function AddRowButton({ subjectId, pressEnter }) {
 			return;
 		}
 		pressButton.current.click();
-	}, [pressButton]);
+	}, [pressEnter]);
 	return (
 		<button ref={pressButton} className="addRowButton" onClick={handleAddStandard}>
-			<AddIcon width="20" height="20" />
+			<AddIcon />
 			<span style={{ marginLeft: "10px" }}>Add A Standard</span>
 		</button>
 	);
