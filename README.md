@@ -2,7 +2,7 @@
 
 A tool for teachers to author a curriculum for **MULTIPLE** subjects.
 
-You can watch the demo of the tool in action from this [video](https://drive.google.com/file/d/1gD-LcdtBWC2H_JpN_JEH0sI3UbGABDMV/view?usp=sharing). The data is stored in the following way -
+You can watch the demo of the tool in action from this [Video](https://drive.google.com/file/d/1gD-LcdtBWC2H_JpN_JEH0sI3UbGABDMV/view?usp=sharing). The data is stored in the following way -
 
 ```
 1. Subject 1
@@ -26,7 +26,7 @@ You can watch the demo of the tool in action from this [video](https://drive.goo
 
 ## Project Demo
 
-[video](https://drive.google.com/file/d/1gD-LcdtBWC2H_JpN_JEH0sI3UbGABDMV/view?usp=sharing)
+[Video](https://drive.google.com/file/d/1gD-LcdtBWC2H_JpN_JEH0sI3UbGABDMV/view?usp=sharing)
 
 ## Hosted On
 
