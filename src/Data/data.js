@@ -35,26 +35,38 @@ const dataSlice = createSlice({
 				});
 				return tempState;
 			} else if (tempState[subjectIndex].children.at(-1).children.length === 0) {
-				tempState[subjectIndex].children.push({
-					id: uuidv4(),
-					text: "",
-					children: [],
-				});
-				return tempState;
+				if (tempState[subjectIndex].children.at(-1).text) {
+					tempState[subjectIndex].children.push({
+						id: uuidv4(),
+						text: "",
+						children: [],
+					});
+					return tempState;
+				} else {
+					toast.error("Enter something first!");
+				}
 			} else if (tempState[subjectIndex].children.at(-1).children.at(-1).children.length === 0) {
-				tempState[subjectIndex].children.at(-1).children.push({
-					id: uuidv4(),
-					text: "",
-					children: [],
-				});
-				return tempState;
+				if (tempState[subjectIndex].children.at(-1).children.at(-1).text) {
+					tempState[subjectIndex].children.at(-1).children.push({
+						id: uuidv4(),
+						text: "",
+						children: [],
+					});
+					return tempState;
+				} else {
+					toast.error("Enter something first!");
+				}
 			} else if (tempState[subjectIndex].children.at(-1).children.at(-1).children.at(-1).children.length === 0) {
-				tempState[subjectIndex].children.at(-1).children.at(-1).children.push({
-					id: uuidv4(),
-					text: "",
-					children: [],
-				});
-				return tempState;
+				if (tempState[subjectIndex].children.at(-1).children.at(-1).children.at(-1).text) {
+					tempState[subjectIndex].children.at(-1).children.at(-1).children.push({
+						id: uuidv4(),
+						text: "",
+						children: [],
+					});
+					return tempState;
+				} else {
+					toast.error("Enter something first!");
+				}
 			}
 		},
 		deleteStandard(state, action) {
@@ -101,7 +113,7 @@ const dataSlice = createSlice({
 				let chapterIndex = tempState[subjectIndex].children.findIndex((chapter) => chapter.id === action.payload[1]);
 				let headingIndex = tempState[subjectIndex].children[chapterIndex].children.findIndex((heading) => heading.id === action.payload[2]);
 				if (tempState[subjectIndex].children[chapterIndex].children[headingIndex].children.length !== 0) {
-					toast.error("This heading has subheadings cannot outdent!");
+					toast.error("This heading has subheadings, you cannot outdent this!");
 				} else if (headingIndex === 0) {
 					tempState[subjectIndex].children.splice(chapterIndex + 1, 0, tempState[subjectIndex].children[chapterIndex].children[headingIndex]);
 					for (let i = headingIndex + 1; i < tempState[subjectIndex].children[chapterIndex].children.length; i++) {
@@ -175,7 +187,7 @@ const dataSlice = createSlice({
 			if (action.payload.length === 2) {
 				let subjectIndex = tempState.findIndex((subject) => subject.id === action.payload[0]);
 				if (tempState[subjectIndex].children[0].id === action.payload[1]) {
-					toast.error("First position cannot be heading!");
+					toast.error("First chapter cannot be a heading!");
 				} else {
 					let chapterIndex = tempState[subjectIndex].children.findIndex((chapter) => chapter.id === action.payload[1]);
 					tempState[subjectIndex].children[chapterIndex - 1].children.push({
@@ -193,7 +205,7 @@ const dataSlice = createSlice({
 				let subjectIndex = tempState.findIndex((subject) => subject.id === action.payload[0]);
 				let chapterIndex = tempState[subjectIndex].children.findIndex((chapter) => chapter.id === action.payload[1]);
 				if (tempState[subjectIndex].children[chapterIndex].children[0].id === action.payload[2]) {
-					toast.error("This is the first heading you cannot indent this.");
+					toast.error("This is the first heading you cannot indent this!");
 				} else {
 					let headingIndex = tempState[subjectIndex].children[chapterIndex].children.findIndex((heading) => heading.id === action.payload[2]);
 					tempState[subjectIndex].children[chapterIndex].children[headingIndex - 1].children.push({
@@ -215,7 +227,7 @@ const dataSlice = createSlice({
 				let subjectIndex = tempState.findIndex((subject) => subject.id === action.payload[0]);
 				let chapterIndex = tempState[subjectIndex].children.findIndex((chapter) => chapter.id === action.payload[1]);
 				if (chapterIndex === 0) {
-					toast.error("First chapter cannot be moved upwards");
+					toast.error("First chapter cannot be moved upwards!");
 				} else {
 					[tempState[subjectIndex].children[chapterIndex - 1], tempState[subjectIndex].children[chapterIndex]] = [
 						tempState[subjectIndex].children[chapterIndex],
@@ -229,7 +241,7 @@ const dataSlice = createSlice({
 				let chapterIndex = tempState[subjectIndex].children.findIndex((chapter) => chapter.id === action.payload[1]);
 				let headingIndex = tempState[subjectIndex].children[chapterIndex].children.findIndex((heading) => heading.id === action.payload[2]);
 				if (headingIndex === 0 && chapterIndex === 0) {
-					toast.error("Cannot be moved upwards.");
+					toast.error("First heading of the first chapter cannot be moved upwards!");
 				} else if (headingIndex === 0 && chapterIndex !== 0) {
 					tempState[subjectIndex].children[chapterIndex - 1].children.push(tempState[subjectIndex].children[chapterIndex].children[headingIndex]);
 					tempState[subjectIndex].children[chapterIndex].children.splice(headingIndex, 1);
@@ -249,7 +261,7 @@ const dataSlice = createSlice({
 				let subjectIndex = tempState.findIndex((subject) => subject.id === action.payload[0]);
 				let chapterIndex = tempState[subjectIndex].children.findIndex((chapter) => chapter.id === action.payload[1]);
 				if (chapterIndex === tempState[subjectIndex].children.length - 1) {
-					toast.error("Last chapter cannot be moved downwards");
+					toast.error("Last chapter cannot be moved downwards!");
 				} else {
 					[tempState[subjectIndex].children[chapterIndex + 1], tempState[subjectIndex].children[chapterIndex]] = [
 						tempState[subjectIndex].children[chapterIndex],

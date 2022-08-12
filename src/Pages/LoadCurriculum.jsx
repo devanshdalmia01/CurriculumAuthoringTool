@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import Base from "../Base";
 import ChapterNode from "../Components/ChapterNode";
@@ -28,10 +28,10 @@ export default function LoadCurriculum() {
 				};
 				reader.readAsText(file);
 			} else {
-				return toast.error("Please upload a JSON file.");
+				return toast.error("Please upload a JSON file!");
 			}
 		} else {
-			return toast.error("Please select a file.");
+			return toast.error("Please select a file!");
 		}
 	};
 	return (
@@ -45,7 +45,7 @@ export default function LoadCurriculum() {
 								let subjectName = subject.text;
 								return <AddSubjectButton key={index} subjectName={subjectName} currentSubjectName={currentSubjectName} setCurrentSubjectName={setCurrentSubjectName} />;
 							})}
-						{!(jsonData.length === 0) ? (
+						{!(jsonData.length === 0) && currentSubjectName ? (
 							jsonData.map(
 								(subject, index) =>
 									subject.text === currentSubjectName && (
@@ -56,6 +56,8 @@ export default function LoadCurriculum() {
 										</div>
 									)
 							)
+						) : !currentSubjectName ? (
+							<h1 style={{ marginTop: "30px", textAlign: "center" }}>Select A Subject</h1>
 						) : (
 							<h1 style={{ marginTop: "30px", textAlign: "center" }}>First Add A Subject</h1>
 						)}
