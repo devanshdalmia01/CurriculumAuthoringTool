@@ -10,33 +10,31 @@ import { useSelector } from "react-redux";
 export default function MakeCurriculum() {
 	const [currentSubjectName, setCurrentSubjectName] = useState("");
 	const [pressEnter, setPressEnter] = useState(false);
-	const jsonData = useSelector((state) => state);
+	const jsonData = useSelector((state) => state[0]);
 	return (
-		<>
-			<Base>
-				<main className="mainData">
-					<TopBar setCurrentSubjectName={setCurrentSubjectName} />
-					{!(jsonData.length === 0) &&
-						jsonData.map((subject, index) => {
-							let subjectName = subject.text;
-							return <AddSubjectButton key={index} subjectName={subjectName} currentSubjectName={currentSubjectName} setCurrentSubjectName={setCurrentSubjectName} />;
-						})}
-					{!(jsonData.length === 0) ? (
-						jsonData.map(
-							(subject, index) =>
-								subject.text === currentSubjectName && (
-									<div key={index}>
-										<TableHeading currentSubjectName={currentSubjectName} />
-										<ChapterNode chapterData={subject.children} subjectId={subject.id} pressEnter={pressEnter} setPressEnter={setPressEnter} />
-										<AddRowButton subjectId={subject.id} pressEnter={pressEnter} />
-									</div>
-								)
-						)
-					) : (
-						<h1 style={{ marginTop: "30px", textAlign: "center" }}>First Add A Subject</h1>
-					)}
-				</main>
-			</Base>
-		</>
+		<Base>
+			<main className="mainData">
+				<TopBar setCurrentSubjectName={setCurrentSubjectName} />
+				{!(jsonData.length === 0) &&
+					jsonData.map((subject, index) => {
+						let subjectName = subject.text;
+						return <AddSubjectButton key={index} subjectName={subjectName} currentSubjectName={currentSubjectName} setCurrentSubjectName={setCurrentSubjectName} />;
+					})}
+				{!(jsonData.length === 0) ? (
+					jsonData.map(
+						(subject, index) =>
+							subject.text === currentSubjectName && (
+								<div key={index}>
+									<TableHeading currentSubjectName={currentSubjectName} />
+									<ChapterNode chapterData={subject.children} subjectId={subject.id} pressEnter={pressEnter} setPressEnter={setPressEnter} />
+									<AddRowButton subjectId={subject.id} pressEnter={pressEnter} />
+								</div>
+							)
+					)
+				) : (
+					<h1 style={{ marginTop: "30px", textAlign: "center" }}>First Add A Subject</h1>
+				)}
+			</main>
+		</Base>
 	);
 }

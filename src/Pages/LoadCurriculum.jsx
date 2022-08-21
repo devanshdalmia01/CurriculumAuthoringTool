@@ -7,7 +7,7 @@ import TopBar from "../Components/TopBar";
 import AddRowButton from "../Components/AddRowButton";
 import AddSubjectButton from "../Components/AddSubjectButton";
 import { useDispatch, useSelector } from "react-redux";
-import { actions } from "../Data/data";
+import { getDataFromFile } from "../redux/storingData";
 
 export default function LoadCurriculum() {
 	const [fileName, setFileName] = useState("Select File");
@@ -16,14 +16,14 @@ export default function LoadCurriculum() {
 	const [currentSubjectName, setCurrentSubjectName] = useState("");
 	const [pressEnter, setPressEnter] = useState(false);
 	const dispatch = useDispatch();
-	const jsonData = useSelector((state) => state);
+	const jsonData = useSelector((state) => state[0]);
 	const getJSONData = (e) => {
 		e.preventDefault();
 		if (file) {
 			if (file.type.includes("json")) {
 				const reader = new FileReader();
 				reader.onload = async (e) => {
-					dispatch(actions.getDataFromFile(JSON.parse(e.target.result)));
+					dispatch(getDataFromFile(JSON.parse(e.target.result)));
 					setFileUploaded(true);
 				};
 				reader.readAsText(file);

@@ -1,16 +1,19 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
+import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
+import { toast } from "react-toastify";
 
 const dataSlice = createSlice({
 	name: "data",
-	initialState: [],
+	initialState: {
+		0: [],
+	},
 	reducers: {
 		getDataFromFile(state, action) {
-			return action.payload;
+			const tempState = state[0];
+			tempState = action.payload;
 		},
 		addSubject(state, action) {
-			const tempState = state;
+			const tempState = state[0];
 			tempState.push({
 				id: uuidv4(),
 				text: action.payload,
@@ -22,10 +25,9 @@ const dataSlice = createSlice({
 					},
 				],
 			});
-			return tempState;
 		},
 		addStandard(state, action) {
-			const tempState = state;
+			const tempState = state[0];
 			let subjectIndex = tempState.findIndex((subject) => subject.id === action.payload);
 			if (tempState[subjectIndex].children.length === 0) {
 				tempState[subjectIndex].children.push({
@@ -33,7 +35,6 @@ const dataSlice = createSlice({
 					text: "",
 					children: [],
 				});
-				return tempState;
 			} else if (tempState[subjectIndex].children.at(-1).children.length === 0) {
 				if (tempState[subjectIndex].children.at(-1).text) {
 					tempState[subjectIndex].children.push({
@@ -41,7 +42,6 @@ const dataSlice = createSlice({
 						text: "",
 						children: [],
 					});
-					return tempState;
 				} else {
 					toast.error("Enter something first!");
 				}
@@ -52,7 +52,6 @@ const dataSlice = createSlice({
 						text: "",
 						children: [],
 					});
-					return tempState;
 				} else {
 					toast.error("Enter something first!");
 				}
@@ -63,51 +62,44 @@ const dataSlice = createSlice({
 						text: "",
 						children: [],
 					});
-					return tempState;
 				} else {
 					toast.error("Enter something first!");
 				}
 			}
 		},
 		deleteStandard(state, action) {
-			const tempState = state;
+			const tempState = state[0];
 			let subjectIndex = tempState.findIndex((subject) => subject.id === action.payload[0]);
 			let chapterIndex = tempState[subjectIndex].children.findIndex((chapter) => chapter.id === action.payload[1]);
 			if (action.payload.length === 2) {
 				tempState[subjectIndex].children.splice(chapterIndex, 1);
-				return tempState;
 			} else if (action.payload.length === 3) {
 				let headingIndex = tempState[subjectIndex].children[chapterIndex].children.findIndex((heading) => heading.id === action.payload[2]);
 				tempState[subjectIndex].children[chapterIndex].children.splice(headingIndex, 1);
-				return tempState;
 			} else if (action.payload.length === 4) {
 				let headingIndex = tempState[subjectIndex].children[chapterIndex].children.findIndex((heading) => heading.id === action.payload[2]);
 				let subHeadingIndex = tempState[subjectIndex].children[chapterIndex].children[headingIndex].children.findIndex((subHeading) => subHeading.id === action.payload[3]);
 				tempState[subjectIndex].children[chapterIndex].children[headingIndex].children.splice(subHeadingIndex, 1);
-				return tempState;
 			}
 		},
 		updateStandard(state, action) {
-			const tempState = state;
+			const tempState = state[0];
 			const value = action.payload[0];
 			let subjectIndex = tempState.findIndex((subject) => subject.id === action.payload[1]);
 			let chapterIndex = tempState[subjectIndex].children.findIndex((chapter) => chapter.id === action.payload[2]);
 			if (action.payload.length === 3) {
 				tempState[subjectIndex].children[chapterIndex].text = value;
-				return tempState;
 			} else if (action.payload.length === 4) {
 				let headingIndex = tempState[subjectIndex].children[chapterIndex].children.findIndex((heading) => heading.id === action.payload[3]);
 				tempState[subjectIndex].children[chapterIndex].children[headingIndex].text = value;
-				return tempState;
 			} else if (action.payload.length === 5) {
 				let headingIndex = tempState[subjectIndex].children[chapterIndex].children.findIndex((heading) => heading.id === action.payload[3]);
 				let subHeadingIndex = tempState[subjectIndex].children[chapterIndex].children[headingIndex].children.findIndex((subHeading) => subHeading.id === action.payload[4]);
 				tempState[subjectIndex].children[chapterIndex].children[headingIndex].children[subHeadingIndex].text = value;
-				return tempState;
 			}
 		},
 		outdentStandard(state, action) {
-			const tempState = state;
+			const tempState = state[0];
 			if (action.payload.length === 3) {
 				let subjectIndex = tempState.findIndex((subject) => subject.id === action.payload[0]);
 				let chapterIndex = tempState[subjectIndex].children.findIndex((chapter) => chapter.id === action.payload[1]);
@@ -120,18 +112,15 @@ const dataSlice = createSlice({
 						tempState[subjectIndex].children[chapterIndex + 1].children.push(tempState[subjectIndex].children[chapterIndex].children[i]);
 					}
 					tempState[subjectIndex].children[chapterIndex].children = [];
-					return tempState;
 				} else if (headingIndex === tempState[subjectIndex].children[chapterIndex].children.length - 1) {
 					tempState[subjectIndex].children.splice(chapterIndex + 1, 0, tempState[subjectIndex].children[chapterIndex].children[headingIndex]);
 					tempState[subjectIndex].children[chapterIndex].children.splice(headingIndex, 1);
-					return tempState;
 				} else {
 					tempState[subjectIndex].children.splice(chapterIndex + 1, 0, tempState[subjectIndex].children[chapterIndex].children[headingIndex]);
 					for (let i = headingIndex + 1; i < tempState[subjectIndex].children[chapterIndex].children.length; i++) {
 						tempState[subjectIndex].children[chapterIndex + 1].children.push(tempState[subjectIndex].children[chapterIndex].children[i]);
 					}
 					tempState[subjectIndex].children[chapterIndex].children.splice(headingIndex, tempState[subjectIndex].children[chapterIndex].children.length - headingIndex);
-					return tempState;
 				}
 			} else if (action.payload.length === 4) {
 				let subjectIndex = tempState.findIndex((subject) => subject.id === action.payload[0]);
@@ -148,7 +137,6 @@ const dataSlice = createSlice({
 						tempState[subjectIndex].children[chapterIndex].children[headingIndex + 1].children.push(tempState[subjectIndex].children[chapterIndex].children[headingIndex].children[i]);
 					}
 					tempState[subjectIndex].children[chapterIndex].children[headingIndex].children = [];
-					return tempState;
 				} else if (subHeadingIndex === 0 && tempState[subjectIndex].children[chapterIndex].children[headingIndex].children.length === 1) {
 					tempState[subjectIndex].children[chapterIndex].children.splice(
 						headingIndex + 1,
@@ -156,7 +144,6 @@ const dataSlice = createSlice({
 						tempState[subjectIndex].children[chapterIndex].children[headingIndex].children[subHeadingIndex]
 					);
 					tempState[subjectIndex].children[chapterIndex].children[headingIndex].children = [];
-					return tempState;
 				} else if (subHeadingIndex === tempState[subjectIndex].children[chapterIndex].children[headingIndex].children.length - 1) {
 					tempState[subjectIndex].children[chapterIndex].children.splice(
 						headingIndex + 1,
@@ -164,7 +151,6 @@ const dataSlice = createSlice({
 						tempState[subjectIndex].children[chapterIndex].children[headingIndex].children[subHeadingIndex]
 					);
 					tempState[subjectIndex].children[chapterIndex].children[headingIndex].children.splice(subHeadingIndex, 1);
-					return tempState;
 				} else {
 					tempState[subjectIndex].children[chapterIndex].children.splice(
 						headingIndex + 1,
@@ -178,12 +164,11 @@ const dataSlice = createSlice({
 						subHeadingIndex,
 						tempState[subjectIndex].children[chapterIndex].children[headingIndex].children.length - subHeadingIndex
 					);
-					return tempState;
 				}
 			}
 		},
 		indentStandard(state, action) {
-			const tempState = state;
+			const tempState = state[0];
 			if (action.payload.length === 2) {
 				let subjectIndex = tempState.findIndex((subject) => subject.id === action.payload[0]);
 				if (tempState[subjectIndex].children[0].id === action.payload[1]) {
@@ -199,7 +184,6 @@ const dataSlice = createSlice({
 						tempState[subjectIndex].children[chapterIndex - 1].children.push(tempState[subjectIndex].children[chapterIndex].children[i]);
 					}
 					tempState[subjectIndex].children.splice(chapterIndex, 1);
-					return tempState;
 				}
 			} else if (action.payload.length === 3) {
 				let subjectIndex = tempState.findIndex((subject) => subject.id === action.payload[0]);
@@ -217,12 +201,11 @@ const dataSlice = createSlice({
 						tempState[subjectIndex].children[chapterIndex].children[headingIndex - 1].push(tempState[subjectIndex].children[chapterIndex].children[headingIndex].children[i]);
 					}
 					tempState[subjectIndex].children[chapterIndex].children.splice(headingIndex, 1);
-					return tempState;
 				}
 			}
 		},
 		moveUpStandard(state, action) {
-			const tempState = state;
+			const tempState = state[0];
 			if (action.payload.length === 2) {
 				let subjectIndex = tempState.findIndex((subject) => subject.id === action.payload[0]);
 				let chapterIndex = tempState[subjectIndex].children.findIndex((chapter) => chapter.id === action.payload[1]);
@@ -233,7 +216,6 @@ const dataSlice = createSlice({
 						tempState[subjectIndex].children[chapterIndex],
 						tempState[subjectIndex].children[chapterIndex - 1],
 					];
-					return tempState;
 				}
 			}
 			if (action.payload.length === 3) {
@@ -245,13 +227,11 @@ const dataSlice = createSlice({
 				} else if (headingIndex === 0 && chapterIndex !== 0) {
 					tempState[subjectIndex].children[chapterIndex - 1].children.push(tempState[subjectIndex].children[chapterIndex].children[headingIndex]);
 					tempState[subjectIndex].children[chapterIndex].children.splice(headingIndex, 1);
-					return tempState;
 				} else {
 					[tempState[subjectIndex].children[chapterIndex].children[headingIndex - 1], tempState[subjectIndex].children[chapterIndex].children[headingIndex]] = [
 						tempState[subjectIndex].children[chapterIndex].children[headingIndex],
 						tempState[subjectIndex].children[chapterIndex].children[headingIndex - 1],
 					];
-					return tempState;
 				}
 			}
 			if (action.payload.length === 4) {
@@ -269,12 +249,11 @@ const dataSlice = createSlice({
 						tempState[subjectIndex].children[chapterIndex].children[headingIndex].children[subHeadingIndex],
 						tempState[subjectIndex].children[chapterIndex].children[headingIndex].children[subHeadingIndex - 1],
 					];
-					return tempState;
 				}
 			}
 		},
 		moveDownStandard(state, action) {
-			const tempState = state;
+			const tempState = state[0];
 			if (action.payload.length === 2) {
 				let subjectIndex = tempState.findIndex((subject) => subject.id === action.payload[0]);
 				let chapterIndex = tempState[subjectIndex].children.findIndex((chapter) => chapter.id === action.payload[1]);
@@ -285,7 +264,6 @@ const dataSlice = createSlice({
 						tempState[subjectIndex].children[chapterIndex],
 						tempState[subjectIndex].children[chapterIndex + 1],
 					];
-					return tempState;
 				}
 			}
 			if (action.payload.length === 3) {
@@ -295,17 +273,14 @@ const dataSlice = createSlice({
 				if (headingIndex === tempState[subjectIndex].children[chapterIndex].children.length - 1 && chapterIndex === tempState[subjectIndex].children.length - 1) {
 					tempState[subjectIndex].children.push(tempState[subjectIndex].children[chapterIndex].children[headingIndex]);
 					tempState[subjectIndex].children[chapterIndex].children.splice(headingIndex, 1);
-					return tempState;
 				} else if (headingIndex === tempState[subjectIndex].children[chapterIndex].children.length - 1 && chapterIndex !== tempState[subjectIndex].children.length - 1) {
 					tempState[subjectIndex].children[chapterIndex + 1].children.unshift(tempState[subjectIndex].children[chapterIndex].children[headingIndex]);
 					tempState[subjectIndex].children[chapterIndex].children.splice(headingIndex, 1);
-					return tempState;
 				} else {
 					[tempState[subjectIndex].children[chapterIndex].children[headingIndex + 1], tempState[subjectIndex].children[chapterIndex].children[headingIndex]] = [
 						tempState[subjectIndex].children[chapterIndex].children[headingIndex],
 						tempState[subjectIndex].children[chapterIndex].children[headingIndex + 1],
 					];
-					return tempState;
 				}
 			}
 			if (action.payload.length === 4) {
@@ -323,14 +298,12 @@ const dataSlice = createSlice({
 						tempState[subjectIndex].children[chapterIndex].children[headingIndex].children[subHeadingIndex],
 						tempState[subjectIndex].children[chapterIndex].children[headingIndex].children[subHeadingIndex + 1],
 					];
-					return tempState;
 				}
 			}
 		},
 	},
 });
-const store = configureStore({
-	reducer: dataSlice.reducer,
-});
-export const actions = dataSlice.actions;
-export default store;
+
+export const { getDataFromFile, addSubject, addStandard, deleteStandard, updateStandard, outdentStandard, indentStandard, moveUpStandard, moveDownStandard } = dataSlice.actions;
+
+export default dataSlice.reducer;
