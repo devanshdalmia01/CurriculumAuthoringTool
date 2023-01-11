@@ -9,8 +9,8 @@ const dataSlice = createSlice({
 	},
 	reducers: {
 		getDataFromFile(state, action) {
-			const tempState = state[0];
-			tempState = action.payload;
+			const tempState = state;
+			tempState[0] = action.payload;
 		},
 		addSubject(state, action) {
 			const tempState = state[0];
