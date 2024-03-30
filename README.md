@@ -131,5 +131,6 @@ https://curriculumauthoringtool.netlify.app
 ## Future Scope
 
 -   Save data in local storage, so that the data remains even after refresh
+-   Add support for Tab and Shift+Tab to increase or decrease indent levels respectively
 -   Make UI adaptive
 -   Make backend and store data in cloud and make login logout features
